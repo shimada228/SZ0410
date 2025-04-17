@@ -17,7 +17,7 @@
 	'Windows フォーム デザイナで必要です。
 	Private components As System.ComponentModel.IContainer
 	Public ToolTip1 As System.Windows.Forms.ToolTip
-	Public WithEvents SPRD050 As AxFPSpreadADO.AxfpSpread
+	Public WithEvents SPRD050 As AxFPSpread.AxvaSpread
 	Public WithEvents DUMMY As System.Windows.Forms.PictureBox
 	Public WithEvents IMTXDUM As Control.AximText6.AximText
 	Public WithEvents _CMDOFNC_9 As Control.AximButton6.AximButton
@@ -59,7 +59,7 @@
 		Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(SZ0412FRM))
 		Me.components = New System.ComponentModel.Container()
 		Me.ToolTip1 = New System.Windows.Forms.ToolTip(components)
-		Me.SPRD050 = New AxFPSpreadADO.AxfpSpread
+		Me.SPRD050 = New AxFPSpread.AxvaSpread
 		Me.DUMMY = New System.Windows.Forms.PictureBox
 		Me.IMTXDUM = New Control.AximText6.AximText
 		Me._CMDOFNC_9 = New Control.AximButton6.AximButton
@@ -131,7 +131,6 @@
 		Me.HelpButton = False
 		Me.WindowState = System.Windows.Forms.FormWindowState.Normal
 		Me.Name = "SZ0412FRM"
-		SPRD050.OcxState = CType(resources.GetObject("SPRD050.OcxState"), System.Windows.Forms.AxHost.State)
 		Me.SPRD050.Size = New System.Drawing.Size(756, 394)
 		Me.SPRD050.Location = New System.Drawing.Point(16, 76)
 		Me.SPRD050.TabIndex = 30
@@ -151,62 +150,50 @@
 		Me.DUMMY.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal
 		Me.DUMMY.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.DUMMY.Name = "DUMMY"
-		IMTXDUM.OcxState = CType(resources.GetObject("IMTXDUM.OcxState"), System.Windows.Forms.AxHost.State)
 		Me.IMTXDUM.Size = New System.Drawing.Size(29, 22)
 		Me.IMTXDUM.Location = New System.Drawing.Point(547, -28)
 		Me.IMTXDUM.TabIndex = 31
 		Me.IMTXDUM.Name = "IMTXDUM"
-		_CMDOFNC_9.OcxState = CType(resources.GetObject("_CMDOFNC_9.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_9.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_9.Location = New System.Drawing.Point(535, 492)
 		Me._CMDOFNC_9.TabIndex = 8
 		Me._CMDOFNC_9.Name = "_CMDOFNC_9"
-		_CMDOFNC_0.OcxState = CType(resources.GetObject("_CMDOFNC_0.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_0.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_0.Location = New System.Drawing.Point(7, 492)
 		Me._CMDOFNC_0.TabIndex = 0
 		Me._CMDOFNC_0.Name = "_CMDOFNC_0"
-		_CMDOFNC_12.OcxState = CType(resources.GetObject("_CMDOFNC_12.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_12.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_12.Location = New System.Drawing.Point(667, 492)
 		Me._CMDOFNC_12.TabIndex = 10
 		Me._CMDOFNC_12.Name = "_CMDOFNC_12"
-		_CMDOFNC_2.OcxState = CType(resources.GetObject("_CMDOFNC_2.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_2.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_2.Location = New System.Drawing.Point(73, 492)
 		Me._CMDOFNC_2.TabIndex = 1
 		Me._CMDOFNC_2.Name = "_CMDOFNC_2"
-		_CMDOFNC_3.OcxState = CType(resources.GetObject("_CMDOFNC_3.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_3.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_3.Location = New System.Drawing.Point(139, 492)
 		Me._CMDOFNC_3.TabIndex = 2
 		Me._CMDOFNC_3.Name = "_CMDOFNC_3"
-		_CMDOFNC_4.OcxState = CType(resources.GetObject("_CMDOFNC_4.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_4.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_4.Location = New System.Drawing.Point(205, 492)
 		Me._CMDOFNC_4.TabIndex = 3
 		Me._CMDOFNC_4.Name = "_CMDOFNC_4"
-		_CMDOFNC_5.OcxState = CType(resources.GetObject("_CMDOFNC_5.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_5.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_5.Location = New System.Drawing.Point(271, 492)
 		Me._CMDOFNC_5.TabIndex = 4
 		Me._CMDOFNC_5.Name = "_CMDOFNC_5"
-		_CMDOFNC_6.OcxState = CType(resources.GetObject("_CMDOFNC_6.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_6.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_6.Location = New System.Drawing.Point(337, 492)
 		Me._CMDOFNC_6.TabIndex = 5
 		Me._CMDOFNC_6.Name = "_CMDOFNC_6"
-		_CMDOFNC_7.OcxState = CType(resources.GetObject("_CMDOFNC_7.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_7.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_7.Location = New System.Drawing.Point(403, 492)
 		Me._CMDOFNC_7.TabIndex = 6
 		Me._CMDOFNC_7.Name = "_CMDOFNC_7"
-		_CMDOFNC_8.OcxState = CType(resources.GetObject("_CMDOFNC_8.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_8.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_8.Location = New System.Drawing.Point(469, 492)
 		Me._CMDOFNC_8.TabIndex = 7
 		Me._CMDOFNC_8.Name = "_CMDOFNC_8"
-		_CMDOFNC_11.OcxState = CType(resources.GetObject("_CMDOFNC_11.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_11.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_11.Location = New System.Drawing.Point(601, 492)
 		Me._CMDOFNC_11.TabIndex = 9
