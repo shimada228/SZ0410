@@ -818,33 +818,35 @@ Friend Class SZ0410FRM
 		End Select
 		
 	End Sub
-	
+
 	'A-20250201↑
-	
-	Private Sub CMDOFNC_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMDOFNC.ClickEvent
+
+	'Private Sub CMDOFNC_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMDOFNC.ClickEvent 'D-20250417
+	Private Sub CMDOFNC_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMDOFNC.Click 'A-20250417
+
 		Dim Index As Short = CMDOFNC.GetIndex(eventSender)
-		
+
 		Dim iReturn As Short
 		Dim Ret As Short 'A-CUST-20070611
-		
+
 		Select Case Index
 			Case 0 '   ESCAPE  終了
-				
+
 				Call ENDR_RTN()
-				
+
 			Case 2 '   品目検索    これは廃止です。
 				'   品目検索のＤＬＬを呼び出す。
-				
+
 			Case 3 '   問合せ
 				Call F3QUERY(CUR_NO)
 				'        DoEvents
 				'        Debug.Print "After F3QUERY CUR_NO="; CUR_NO
-				
+
 			Case 4 '   複写
 				Call F4COPY()
 				NXT_NO = CUR_NO
 				Call FOCUS_SET()
-				
+
 			Case 5 '   クリア
 				'        WKB030 = ""
 				'Call SCRCLR_RTN                        'D-CUST-20100610
@@ -863,28 +865,28 @@ Friend Class SZ0410FRM
 				'A-20250303-E
 				Call FOCUS_SET()
 				''''    CTRLTBL(N030).CTRL.SetFocus
-				
+
 				'A-CUST-20100610 Start
 			Case 6 '品目取込
 				bBackForm = True
 				SZ0411FRM.ShowDialog()
 				NXT_NO = LST_NO
 				Call FOCUS_SET()
-				
+
 			Case 7 '品目選択
 				bBackForm = True
 				SZ0412FRM.ShowDialog()
 				NXT_NO = LST_NO
 				Call FOCUS_SET()
 				'A-CUST-20100610 End
-				
+
 			Case 8 '   削除
 				Call F8DELETE()
 				'        NXT_NO = CUR_NO
 				'        Call FOCUS_SET
-				
+
 			Case 9 '   追加        これは廃止です。
-				
+
 			Case 12 '   実行
 				If W_KENGEN(1) < 2 Then
 					ZAER_KN = n0
@@ -896,7 +898,7 @@ Friend Class SZ0410FRM
 					Call FOCUS_SET()
 					Exit Sub
 				End If
-				
+
 				'↓A-CUST-20070611
 				'セキュリティチェック（３）事業所更新権限
 				MKKDBCMN.MKKDBCMN_RCN = ZACN_RCN
@@ -904,7 +906,7 @@ Friend Class SZ0410FRM
 				If Ret <> n0 Then
 					ERRSW = F_ERR
 					Exit Sub
-				ElseIf W_KENGEN(3) = 0 Then 
+				ElseIf W_KENGEN(3) = 0 Then
 					ERRSW = F_ERR
 					ZAER_KN = n0
 					ZAER_CD = 303
@@ -916,12 +918,12 @@ Friend Class SZ0410FRM
 					Exit Sub
 				End If
 				'↑A-CUST-20070611
-				
+
 				iReturn = ALLCHK_RTN()
 				If iReturn = 0 Then
 					Call GO_EXEC()
 					''If ENDSW = F_END Then
-					
+
 					Call SCRCLR_RTN()
 					''''        CTRLTBL(N030).CTRL.SetFocus
 					'A-CUST-20100610 Start
@@ -934,13 +936,13 @@ Friend Class SZ0410FRM
 						NXT_NO = N030
 					End If 'A-CUST-20100610
 					Call FOCUS_SET()
-					
+
 				End If
 		End Select
-		
+
 	End Sub
-	
-	
+
+
 	Private Sub CMDOFNC_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMDOFNC.Enter
 		Dim Index As Short = CMDOFNC.GetIndex(eventSender)
 		
@@ -983,14 +985,15 @@ Friend Class SZ0410FRM
 		
 		
 	End Sub
-	
-	Private Sub CMDOFNC_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskcmdLibV5.__OSKButton_KeyDownEvent) Handles CMDOFNC.KeyDownEvent
+
+	'Private Sub CMDOFNC_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskcmdLibV5.__OSKButton_KeyDownEvent) Handles CMDOFNC.KeyDownEvent 'D-20250417
+	Private Sub CMDOFNC_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles CMDOFNC.KeyDown 'A-20250417
 		Dim Index As Short = CMDOFNC.GetIndex(eventSender)
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub SZ0410FRM_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
@@ -1230,9 +1233,10 @@ Friend Class SZ0410FRM
 		SPR420.Action = SS_ACTION_ACTIVE_CELL
 		
 		Dim bCancel As Boolean
-		
-		Call SPR420_LeaveCell(SPR420, New AxFPSpreadADO._DSpreadEvents_LeaveCellEvent(1, ROW, 1, ROW + 1, bCancel))
-		
+
+		'Call SPR420_LeaveCell(SPR420, New AxFPSpreadADO._DSpreadEvents_LeaveCellEvent(1, ROW, 1, ROW + 1, bCancel)) 'D-20250417
+		Call SPR420_LeaveCell(SPR420, New AxFPSpread._DSpreadEvents_LeaveCellEvent(1, ROW, 1, ROW + 1, bCancel)) 'A-20250417
+
 	End Sub
 	
 	Public Sub SpreadProperty(ByRef IROW As Integer)
@@ -1790,8 +1794,8 @@ Friend Class SZ0410FRM
 			Call SpreadInit()
 			Call SCR_DSPDATA()
 			'UPGRADE_WARNING: オブジェクト CTRLTBL(N300).CTRL.Index の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-			Debug.Print("E" & CTRLTBL(N300).CTRL.Name & CTRLTBL(N300).CTRL.Index)
-			
+			'Debug.Print("E" & CTRLTBL(N300).CTRL.Name & CTRLTBL(N300).CTRL.Index) 'D-20250417
+
 			Call SCR_BUSHO(False, WKB030)
 			
 			SetLookupMode(True)
@@ -1828,37 +1832,44 @@ Friend Class SZ0410FRM
 		
 		Dim bBef As Boolean
 		Dim bAft As Boolean
-		
+
 		'   管理区分－数量CTRLTBL
-		bBef = OPTO300(1).Value
-		CTRLTBL(N300).CTRL = IIf(OPTO300(1).Value, OPTO300(1).Value, OPTO300(2).Value)
-		bAft = OPTO300(1).Value
-		System.Diagnostics.Debug.Assert(bBef = bAft, "")
-		
+		'bBef = OPTO300(1).Value 'D-20250417
+		bBef = OPTO300(1).Checked 'A-20250417
+		'CTRLTBL(N300).CTRL = IIf(OPTO300(1).Value, OPTO300(1).Value, OPTO300(2).Value) 'D-20250417
+		CTRLTBL(N300).CTRL = IIf(OPTO300(1).Checked, OPTO300(1).Checked, OPTO300(2).Checked) 'A-20250417
+		'bAft = OPTO300(1).Value 'D-20250417
+		bAft = OPTO300(1).Checked 'A-20250417
+		'System.Diagnostics.Debug.Assert(bBef = bAft, "") 'D-20250417
+
 		'UPGRADE_WARNING: オブジェクト CTRLTBL(N300).CTRL.Index の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-		System.Diagnostics.Debug.Assert(WKB300 = CTRLTBL(N300).CTRL.Index, "")
-		
+		'System.Diagnostics.Debug.Assert(WKB300 = CTRLTBL(N300).CTRL.Index, "") 'D-20250417
+
 		'   消費税区分－外税
-		CTRLTBL(N310).CTRL = IIf(OPTO310(1).Value, OPTO310(1).Value, IIf(OPTO310(2).Value, OPTO310(2).Value, OPTO310(3).Value))
+		'CTRLTBL(N310).CTRL = IIf(OPTO310(1).Value, OPTO310(1).Value, IIf(OPTO310(2).Value, OPTO310(2).Value, OPTO310(3).Value)) 'D-20250417
+		CTRLTBL(N310).CTRL = IIf(OPTO310(1).Checked, OPTO310(1).Checked, IIf(OPTO310(2).Checked, OPTO310(2).Checked, OPTO310(3).Checked)) 'A-20250417
 		'UPGRADE_WARNING: オブジェクト CTRLTBL(N310).CTRL.Index の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-		System.Diagnostics.Debug.Assert(WKB310 = CTRLTBL(N310).CTRL.Index, "")
-		
-		
+		'System.Diagnostics.Debug.Assert(WKB310 = CTRLTBL(N310).CTRL.Index, "") 'D-20250417
+
+
 		'   棚卸単価－仕入単価
-		CTRLTBL(N320).CTRL = IIf(OPTO320(1).Value, OPTO320(1).Value, OPTO320(2).Value)
+		'CTRLTBL(N320).CTRL = IIf(OPTO320(1).Value, OPTO320(1).Value, OPTO320(2).Value) 'D-20250417
+		CTRLTBL(N320).CTRL = IIf(OPTO320(1).Checked, OPTO320(1).Checked, OPTO320(2).Checked) 'A-20250417
 		'UPGRADE_WARNING: オブジェクト CTRLTBL(N320).CTRL.Index の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-		System.Diagnostics.Debug.Assert(WKB320 = CTRLTBL(N320).CTRL.Index, "")
-		
+		'System.Diagnostics.Debug.Assert(WKB320 = CTRLTBL(N320).CTRL.Index, "") 'D-20250417
+
 		'   在庫管理－する
-		CTRLTBL(N330).CTRL = IIf(OPTO330(1).Value, OPTO330(1).Value, OPTO330(2).Value)
+		'CTRLTBL(N330).CTRL = IIf(OPTO330(1).Value, OPTO330(1).Value, OPTO330(2).Value) 'D-20250417
+		CTRLTBL(N330).CTRL = IIf(OPTO330(1).Checked, OPTO330(1).Checked, OPTO330(2).Checked) 'D-20250417
 		'UPGRADE_WARNING: オブジェクト CTRLTBL(N330).CTRL.Index の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-		System.Diagnostics.Debug.Assert(WKB330 = CTRLTBL(N330).CTRL.Index, "")
-		
+		'System.Diagnostics.Debug.Assert(WKB330 = CTRLTBL(N330).CTRL.Index, "") 'D-20250417
+
 		'   FAX送信－する
-		CTRLTBL(N340).CTRL = IIf(OPTO340(1).Value, OPTO340(1).Value, OPTO340(2).Value)
+		'CTRLTBL(N340).CTRL = IIf(OPTO340(1).Value, OPTO340(1).Value, OPTO340(2).Value) 'D-20250417
+		CTRLTBL(N340).CTRL = IIf(OPTO340(1).Checked, OPTO340(1).Checked, OPTO340(2).Checked) 'D-20250417
 		'UPGRADE_WARNING: オブジェクト CTRLTBL(N340).CTRL.Index の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-		System.Diagnostics.Debug.Assert(WKB340 = CTRLTBL(N340).CTRL.Index, "")
-		
+		'System.Diagnostics.Debug.Assert(WKB340 = CTRLTBL(N340).CTRL.Index, "") 'D-20250417
+
 	End Sub
 	
 	Private Sub QUE_KAISHA()
@@ -2534,8 +2545,9 @@ IPROCHK_N100_L:
 	Private Sub IPROCHK_N150()
 		'   原産国
 		'KB.k44 = IMTX150(0).Text   'D-20130401-
-		
-		KB.k44 = StrConv(IMTX150(0).Text, VbStrConv.UpperCase) 'A-20130401-大文字に変換
+
+		'KB.k44 = StrConv(IMTX150(0).Text, VbStrConv.Uppercase) 'A-20130401-大文字に変換 'D-20250417
+		KB.k44 = Microsoft.VisualBasic.StrConv(IMTX150(0).Text, VbStrConv.Uppercase) 'A-20130401-大文字に変換 'A-20250417
 		IMTX150(0).Text = KB.k44 'A-20130401-
 		
 	End Sub
@@ -3226,15 +3238,16 @@ IPROCHK_N100_L:
 		End Select
 		
 		Call SCR_DSPTAX()
-		
-		If OPTO310(3).Value = False And Trim(CMB370.Text) = "" Then
+
+		'If OPTO310(3).Value = False And Trim(CMB370.Text) = "" Then 'D-20250417
+		If OPTO310(3).Checked = False And Trim(CMB370.Text) = "" Then 'A-20250417
 			If CUR_NO <> N330 Then
 				Exit Sub
 			End If
 			ERRSW = F_ERR
 			Exit Sub
 		End If
-		
+
 	End Sub
 	'A-20250201↑
 	

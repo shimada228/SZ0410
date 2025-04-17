@@ -17,7 +17,7 @@
 	'Windows フォーム デザイナで必要です。
 	Private components As System.ComponentModel.IContainer
 	Public ToolTip1 As System.Windows.Forms.ToolTip
-	Public WithEvents SPRD As AxFPSpreadADO.AxfpSpread
+	Public WithEvents SPRD As AxFPSpread.AxvaSpread
 	Public WithEvents CMB030 As System.Windows.Forms.ComboBox
 	Public WithEvents CMB020 As System.Windows.Forms.ComboBox
 	Public WithEvents CMB010 As System.Windows.Forms.ComboBox
@@ -41,7 +41,7 @@
 		Dim resources As System.Resources.ResourceManager = New System.Resources.ResourceManager(GetType(SZ0415FRM))
 		Me.components = New System.ComponentModel.Container()
 		Me.ToolTip1 = New System.Windows.Forms.ToolTip(components)
-		Me.SPRD = New AxFPSpreadADO.AxfpSpread
+		Me.SPRD = New AxFPSpread.AxvaSpread
 		Me.CMB030 = New System.Windows.Forms.ComboBox
 		Me.CMB020 = New System.Windows.Forms.ComboBox
 		Me.CMB010 = New System.Windows.Forms.ComboBox
@@ -87,7 +87,6 @@
 		Me.HelpButton = False
 		Me.WindowState = System.Windows.Forms.FormWindowState.Normal
 		Me.Name = "SZ0415FRM"
-		SPRD.OcxState = CType(resources.GetObject("SPRD.OcxState"), System.Windows.Forms.AxHost.State)
 		Me.SPRD.Size = New System.Drawing.Size(368, 262)
 		Me.SPRD.Location = New System.Drawing.Point(60, 118)
 		Me.SPRD.TabIndex = 4
@@ -137,22 +136,18 @@
 		Me.CMB010.TabStop = True
 		Me.CMB010.Visible = True
 		Me.CMB010.Name = "CMB010"
-		_CMDOFNC_12.OcxState = CType(resources.GetObject("_CMDOFNC_12.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_12.Size = New System.Drawing.Size(69, 21)
 		Me._CMDOFNC_12.Location = New System.Drawing.Point(359, 403)
 		Me._CMDOFNC_12.TabIndex = 5
 		Me._CMDOFNC_12.Name = "_CMDOFNC_12"
-		_CMDOFNC_0.OcxState = CType(resources.GetObject("_CMDOFNC_0.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_0.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_0.Location = New System.Drawing.Point(5, 403)
 		Me._CMDOFNC_0.TabIndex = 7
 		Me._CMDOFNC_0.Name = "_CMDOFNC_0"
-		_CMDOFNC_5.OcxState = CType(resources.GetObject("_CMDOFNC_5.OcxState"), System.Windows.Forms.AxHost.State)
 		Me._CMDOFNC_5.Size = New System.Drawing.Size(65, 21)
 		Me._CMDOFNC_5.Location = New System.Drawing.Point(71, 403)
 		Me._CMDOFNC_5.TabIndex = 6
 		Me._CMDOFNC_5.Name = "_CMDOFNC_5"
-		CMDODSP.OcxState = CType(resources.GetObject("CMDODSP.OcxState"), System.Windows.Forms.AxHost.State)
 		Me.CMDODSP.Size = New System.Drawing.Size(69, 21)
 		Me.CMDODSP.Location = New System.Drawing.Point(358, 80)
 		Me.CMDODSP.TabIndex = 3
