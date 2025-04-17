@@ -4060,7 +4060,8 @@ IPROCHK_N100_L:
 			If MsgBox("クリアしますか？", MsgBoxStyle.YesNo + MsgBoxStyle.ApplicationModal + MsgBoxStyle.Question, "仕入品目基本情報入力") = MsgBoxResult.No Then
 				ERRSW = F_ERR
 				ENDSW = F_END
-				OPTO999(KBKBN).Value = True
+				'OPTO999(KBKBN).Value = True 'D-20250417
+				OPTO999(KBKBN).Checked = True 'A-20250417
 				CTRLTBL(N999).CTRL = OPTO999(KBKBN)
 				NXT_NO = LST_NO
 				Call FOCUS_SET()
@@ -5415,20 +5416,22 @@ IPROCHK_N100_L:
 		
 		eventArgs.Cancel = Cancel
 	End Sub
-	
-	Private Sub SZ0410FRM_FormClosed(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
-		
-		'Call ZAEND_SUB                         'D-CUST-20100610
-		'UPGRADE_ISSUE: Event パラメータ Cancel はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="FB723E3C-1C06-4D2B-B083-E6CD0D334DA8"' をクリックしてください。
-		Cancel = True 'A-CUST-20100610
-		Call ENDR_RTN() 'A-CUST-20100610
-		
+
+	'Private Sub SZ0410FRM_FormClosed(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed 'D-20250417
+	Private Sub SZ0410FRM_FormClosed(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing 'A-20250417
+
+        'Call ZAEND_SUB                         'D-CUST-20100610
+        'UPGRADE_ISSUE: Event パラメータ Cancel はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="FB723E3C-1C06-4D2B-B083-E6CD0D334DA8"' をクリックしてください。
+        'Cancel = True 'D-20250417
+        eventArgs.Cancel = True 'A-20250417
+        Call ENDR_RTN() 'A-CUST-20100610
+
 	End Sub
-	
-	
-	
-	
-	
+
+
+
+
+
 	Private Sub IMNU110_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMNU110.Enter
 		Dim Index As Short = IMNU110.GetIndex(eventSender)
 		
@@ -5484,21 +5487,23 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMNU110_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU110.KeyDownEvent
+
+	'Private Sub IMNU110_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU110.KeyDownEvent 'D-20250417
+	Private Sub IMNU110_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyDownEvent) Handles IMNU110.KeyDownEvent 'A-20250417
 		Dim Index As Short = IMNU110.GetIndex(eventSender)
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	Private Sub IMNU110_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU110.KeyPressEvent
+
+	'Private Sub IMNU110_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU110.KeyPressEvent 'D-20250417
+	Private Sub IMNU110_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyPressEvent) Handles IMNU110.KeyPressEvent 'A-20250417
 		Dim Index As Short = IMNU110.GetIndex(eventSender)
-		
+
 		Call ZAKB_SUB(eventArgs.KeyAscii)
-		
+
 	End Sub
-	
+
 	Private Sub IMNU120_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMNU120.Enter
 		Dim Index As Short = IMNU120.GetIndex(eventSender)
 		
@@ -5550,20 +5555,22 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMNU120_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU120.KeyDownEvent
+
+	'Private Sub IMNU120_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU120.KeyDownEvent 'D-20250417
+	Private Sub IMNU120_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyDownEvent) Handles IMNU120.KeyDownEvent 'A-20250417
 		Dim Index As Short = IMNU120.GetIndex(eventSender)
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	Private Sub IMNU120_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU120.KeyPressEvent
+
+	'Private Sub IMNU120_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU120.KeyPressEvent 'D-20250417
+	Private Sub IMNU120_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyPressEvent) Handles IMNU120.KeyPressEvent 'A-20250417
 		Dim Index As Short = IMNU120.GetIndex(eventSender)
 		Call ZAKB_SUB(eventArgs.KeyAscii)
-		
+
 	End Sub
-	
+
 	'A-CUST20130212↓
 	Private Sub IMNU160_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMNU160.Enter
 		Dim Index As Short = IMNU160.GetIndex(eventSender)
@@ -5592,19 +5599,22 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		ZAKB_SW = 0
 	End Sub
-	'A-CUST20130212↑
-	'A-CUST20130212↓
-	Private Sub IMNU160_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU160.KeyDownEvent
-		Dim Index As Short = IMNU160.GetIndex(eventSender)
-		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-	End Sub
-	
-	Private Sub IMNU160_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU160.KeyPressEvent
+    'A-CUST20130212↑
+    'A-CUST20130212↓
+
+    'Private Sub IMNU160_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU160.KeyDownEvent 'D-20250417
+    Private Sub IMNU160_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyDownEvent) Handles IMNU160.KeyDownEvent 'A-20250417
+        Dim Index As Short = IMNU160.GetIndex(eventSender)
+        Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
+    End Sub
+
+	'Private Sub IMNU160_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU160.KeyPressEvent 'D-20250417
+	Private Sub IMNU160_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyPressEvent) Handles IMNU160.KeyPressEvent 'A-20250417
 		Dim Index As Short = IMNU160.GetIndex(eventSender)
 		Call ZAKB_SUB(eventArgs.KeyAscii)
-		
+
 	End Sub
-	
+
 	'A-CUST20130212↑
 	'A-CUST20130212↓
 	Private Sub IMNU170_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMNU170.Enter
@@ -5655,215 +5665,223 @@ IPROCHK_N100_L:
 			CTRLTBL(NXT_NO).CTRL.Focus()
 		End If
 	End Sub
-	'A-20240115↑
-	
-	'A-CUST20130212↓
-	Private Sub IMNU170_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU170.KeyDownEvent
-		Dim Index As Short = IMNU170.GetIndex(eventSender)
-		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-	End Sub
-	Private Sub IMNU170_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU170.KeyPressEvent
+    'A-20240115↑
+
+    'A-CUST20130212↓
+    'Private Sub IMNU170_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU170.KeyDownEvent 'D-20250417
+    Private Sub IMNU170_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyDownEvent) Handles IMNU170.KeyDownEvent 'A-20250417
+        Dim Index As Short = IMNU170.GetIndex(eventSender)
+        Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
+    End Sub
+	'Private Sub IMNU170_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU170.KeyPressEvent 'D-20250417
+	Private Sub IMNU170_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyPressEvent) Handles IMNU170.KeyPressEvent 'A-20250417
 		Dim Index As Short = IMNU170.GetIndex(eventSender)
 		Call ZAKB_SUB(eventArgs.KeyAscii)
 	End Sub
-	'A-CUST20130212↑
-	
-	Private Sub IMNU360_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMNU360.Enter
+    'A-CUST20130212↑
+
+    Private Sub IMNU360_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMNU360.Enter
+        Dim Index As Short = IMNU360.GetIndex(eventSender)
+
+        Dim iCur As Short
+
+        Select Case Index
+            Case 1
+                iCur = N360_1
+            Case 2
+                iCur = N360_2
+            Case 3
+                iCur = N360_3
+            Case 4
+                iCur = N360_4
+            Case 5
+                iCur = N360_5
+            Case Else
+                iCur = 0
+        End Select
+
+        If CUR_NO = iCur Then Exit Sub
+
+        CUR_NO = iCur
+        System.Diagnostics.Debug.Assert(CUR_NO > 0, "")
+
+
+        'チェック
+        If LST_NO <> n0 Then
+            If IPROCHK() = False Then
+                Exit Sub
+            End If
+            If GPROCHK() = False Then
+                Exit Sub
+            End If
+        End If
+        If GVALCHK() = False Then
+            Exit Sub
+        End If
+        If MVALCHK() = False Then
+            Exit Sub
+        End If
+        ZAKB_SW = 0
+        '確定
+        LST_NO = CUR_NO
+        '--- ファンクションメッセージ
+        Call FUNCSET_RTN()
+
+    End Sub
+
+    'Private Sub IMNU360_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU360.KeyDownEvent 'D-20250417	
+    Private Sub IMNU360_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyDownEvent) Handles IMNU360.KeyDownEvent 'A-20250417
+        Dim Index As Short = IMNU360.GetIndex(eventSender)
+
+        Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
+
+    End Sub
+
+	'Private Sub IMNU360_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU360.KeyPressEvent 'D-20250417
+	Private Sub IMNU360_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximNumber6.INumEvents_KeyPressEvent) Handles IMNU360.KeyPressEvent 'A-20250417
 		Dim Index As Short = IMNU360.GetIndex(eventSender)
-		
-		Dim iCur As Short
-		
-		Select Case Index
-			Case 1
-				iCur = N360_1
-			Case 2
-				iCur = N360_2
-			Case 3
-				iCur = N360_3
-			Case 4
-				iCur = N360_4
-			Case 5
-				iCur = N360_5
-			Case Else
-				iCur = 0
-		End Select
-		
-		If CUR_NO = iCur Then Exit Sub
-		
-		CUR_NO = iCur
-		System.Diagnostics.Debug.Assert(CUR_NO > 0, "")
-		
-		
-		'チェック
-		If LST_NO <> n0 Then
-			If IPROCHK() = False Then
-				Exit Sub
-			End If
-			If GPROCHK() = False Then
-				Exit Sub
-			End If
-		End If
-		If GVALCHK() = False Then
-			Exit Sub
-		End If
-		If MVALCHK() = False Then
-			Exit Sub
-		End If
-		ZAKB_SW = 0
-		'確定
-		LST_NO = CUR_NO
-		'--- ファンクションメッセージ
-		Call FUNCSET_RTN()
-		
-	End Sub
-	
-	Private Sub IMNU360_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyDownEvent) Handles IMNU360.KeyDownEvent
-		Dim Index As Short = IMNU360.GetIndex(eventSender)
-		
-		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
-	End Sub
-	
-	Private Sub IMNU360_KeyPressEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsknumLibV5.__ImNumber_KeyPressEvent) Handles IMNU360.KeyPressEvent
-		Dim Index As Short = IMNU360.GetIndex(eventSender)
-		
+
 		Call ZAKB_SUB(eventArgs.KeyAscii)
-		
+
 	End Sub
-	
-	Private Sub IMTX010_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX010.Enter
-		
-		OPTO999(1).TabStop = True
-		OPTO999(2).TabStop = True
-		OPTO999(3).TabStop = True
-		
-		If CUR_NO = N010 Then Exit Sub
-		
-		CUR_NO = N010
-		
-		'チェック
-		If LST_NO <> n0 Then
-			If IPROCHK() = False Then
-				Exit Sub
-			End If
-			If GPROCHK() = False Then
-				Exit Sub
-			End If
-		End If
-		If GVALCHK() = False Then
-			Exit Sub
-		End If
-		If MVALCHK() = False Then
-			Exit Sub
-		End If
-		'確定
-		''''Debug.Print "IMTX010_GotFocus LST_NO before="; LST_NO
-		LST_NO = CUR_NO
-		''''Debug.Print "IMTX010_GotFocus LST_NO After ="; LST_NO
-		'--- ファンクションメッセージ
-		Call FUNCSET_RTN()
-		
-	End Sub
-	
-	Private Sub IMTX010_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX010.KeyDownEvent
-		
+
+    Private Sub IMTX010_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX010.Enter
+
+        OPTO999(1).TabStop = True
+        OPTO999(2).TabStop = True
+        OPTO999(3).TabStop = True
+
+        If CUR_NO = N010 Then Exit Sub
+
+        CUR_NO = N010
+
+        'チェック
+        If LST_NO <> n0 Then
+            If IPROCHK() = False Then
+                Exit Sub
+            End If
+            If GPROCHK() = False Then
+                Exit Sub
+            End If
+        End If
+        If GVALCHK() = False Then
+            Exit Sub
+        End If
+        If MVALCHK() = False Then
+            Exit Sub
+        End If
+        '確定
+        ''''Debug.Print "IMTX010_GotFocus LST_NO before="; LST_NO
+        LST_NO = CUR_NO
+        ''''Debug.Print "IMTX010_GotFocus LST_NO After ="; LST_NO
+        '--- ファンクションメッセージ
+        Call FUNCSET_RTN()
+
+    End Sub
+
+	'Private Sub IMTX010_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX010.KeyDownEvent 'D-20250417
+	Private Sub IMTX010_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX010.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	Private Sub IMTX020_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX020.Enter
-		
-		If CUR_NO = N020 Then Exit Sub
-		
-		CUR_NO = N020
-		Debug.Print("020 GotFocus:" & LST_NO)
-		'チェック
-		If LST_NO <> n0 Then
-			If IPROCHK() = False Then
-				Exit Sub
-			End If
-			If GPROCHK() = False Then
-				Exit Sub
-			End If
-		End If
-		If GVALCHK() = False Then
-			Exit Sub
-		End If
-		If MVALCHK() = False Then
-			Exit Sub
-		End If
-		'確定
-		LST_NO = CUR_NO
-		'--- ファンクションメッセージ
-		Call FUNCSET_RTN()
-		
-	End Sub
-	
-	Private Sub IMTX020_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX020.KeyDownEvent
-		
+
+    Private Sub IMTX020_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX020.Enter
+
+        If CUR_NO = N020 Then Exit Sub
+
+        CUR_NO = N020
+        Debug.Print("020 GotFocus:" & LST_NO)
+        'チェック
+        If LST_NO <> n0 Then
+            If IPROCHK() = False Then
+                Exit Sub
+            End If
+            If GPROCHK() = False Then
+                Exit Sub
+            End If
+        End If
+        If GVALCHK() = False Then
+            Exit Sub
+        End If
+        If MVALCHK() = False Then
+            Exit Sub
+        End If
+        '確定
+        LST_NO = CUR_NO
+        '--- ファンクションメッセージ
+        Call FUNCSET_RTN()
+
+    End Sub
+
+	'Private Sub IMTX020_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX020.KeyDownEvent 'D-20250417
+	Private Sub IMTX020_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX020.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	Private Sub IMTX030_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX030.Enter
-		Dim nnum As Integer
-		
-		'Debug.Assert CMDOFNC(0).Enabled
-		'Debug.Assert CMDOFNC(12).Enabled
-		
-		If CUR_NO = N030 Then Exit Sub
-		
-		CUR_NO = N030
-		
-		'チェック
-		If LST_NO <> n0 Then
-			If IPROCHK() = False Then
-				bSPRNotReady = True
-				Exit Sub
-			End If
-			If GPROCHK() = False Then
-				bSPRNotReady = True
-				Exit Sub
-			End If
-		End If
-		If GVALCHK() = False Then
-			Exit Sub
-		End If
-		If MVALCHK() = False Then
-			Exit Sub
-		End If
-		
-		'D-CUST-20100610 Start
-		'If KBKBN = F_ADD And IMTX030.Text = "" Then
-		'    nnum = New_Number
-		'    If nnum < 0 Or nnum > "99999" Then
-		'        Call MsgBox("自動採番が上限に達しました。" + Chr(10) + _
-		''        "採番されません  品目コードを入力してください。　", _
-		''        vbApplicationModal + vbExclamation, "仕入品目基本情報入力")
-		'        IMTX030.Text = ""
-		'    Else
-		'        IMTX030.Text = nnum
-		'    End If
-		'End If
-		'D-CUST-20100610 End
-		'確定
-		LST_NO = CUR_NO
-		'--- ファンクションメッセージ
-		Call FUNCSET_RTN()
-		
-	End Sub
-	
-	Private Sub IMTX030_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX030.KeyDownEvent
-		
+
+    Private Sub IMTX030_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX030.Enter
+        Dim nnum As Integer
+
+        'Debug.Assert CMDOFNC(0).Enabled
+        'Debug.Assert CMDOFNC(12).Enabled
+
+        If CUR_NO = N030 Then Exit Sub
+
+        CUR_NO = N030
+
+        'チェック
+        If LST_NO <> n0 Then
+            If IPROCHK() = False Then
+                bSPRNotReady = True
+                Exit Sub
+            End If
+            If GPROCHK() = False Then
+                bSPRNotReady = True
+                Exit Sub
+            End If
+        End If
+        If GVALCHK() = False Then
+            Exit Sub
+        End If
+        If MVALCHK() = False Then
+            Exit Sub
+        End If
+
+        'D-CUST-20100610 Start
+        'If KBKBN = F_ADD And IMTX030.Text = "" Then
+        '    nnum = New_Number
+        '    If nnum < 0 Or nnum > "99999" Then
+        '        Call MsgBox("自動採番が上限に達しました。" + Chr(10) + _
+        ''        "採番されません  品目コードを入力してください。　", _
+        ''        vbApplicationModal + vbExclamation, "仕入品目基本情報入力")
+        '        IMTX030.Text = ""
+        '    Else
+        '        IMTX030.Text = nnum
+        '    End If
+        'End If
+        'D-CUST-20100610 End
+        '確定
+        LST_NO = CUR_NO
+        '--- ファンクションメッセージ
+        Call FUNCSET_RTN()
+
+    End Sub
+
+	'Private Sub IMTX030_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX030.KeyDownEvent 'D-20250417
+	Private Sub IMTX030_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX030.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX040_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX040.Enter
-		
+
 		'UPGRADE_NOTE: IMEMode は CtlIMEMode にアップグレードされました。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="A9E4979A-37FA-4718-9994-97DD76ED70A7"' をクリックしてください。
-		IMTX040.CtlIMEMode = OsktxtLibV5.CIMEMODE.全角ひらがな 'A-20160726-
-		
+		'IMTX040.CtlIMEMode = OsktxtLibV5.CIMEMODE.全角ひらがな 'A-20160726- 'D-20250417
+		IMTX040.ImeMode = ImeMode.Hiragana                    'A-20250417
+
 		If CUR_NO = N040 Then Exit Sub
 		
 		CUR_NO = N040
@@ -5889,18 +5907,20 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX040_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX040.KeyDownEvent
-		
+
+	'Private Sub IMTX040_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX040.KeyDownEvent 'D-0250417
+	Private Sub IMTX040_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX040.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX050_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX050.Enter
-		
+
 		'UPGRADE_NOTE: IMEMode は CtlIMEMode にアップグレードされました。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="A9E4979A-37FA-4718-9994-97DD76ED70A7"' をクリックしてください。
-		IMTX050.CtlIMEMode = OsktxtLibV5.CIMEMODE.全角ひらがな 'A-20160726-
-		
+		'IMTX050.CtlIMEMode = OsktxtLibV5.CIMEMODE.全角ひらがな 'A-20160726-
+		IMTX050.ImeMode = ImeMode.Hiragana                      'A-20250417
+
 		If CUR_NO = N050 Then Exit Sub
 		
 		CUR_NO = N050
@@ -5926,52 +5946,55 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX050_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX050.KeyDownEvent
-		
+
+	'Private Sub IMTX050_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX050.KeyDownEvent 'D-20250417
+	Private Sub IMTX050_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX050.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	'A-CUST-20100610 Start
-	Private Sub IMTX065_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX065.Enter
-		
-		'UPGRADE_NOTE: IMEMode は CtlIMEMode にアップグレードされました。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="A9E4979A-37FA-4718-9994-97DD76ED70A7"' をクリックしてください。
-		IMTX065.CtlIMEMode = OsktxtLibV5.CIMEMODE.全角ひらがな 'A-20160726-
-		
-		If CUR_NO = N065 Then Exit Sub
-		
-		CUR_NO = N065
-		
-		'チェック
-		If LST_NO <> n0 Then
-			If IPROCHK() = False Then
-				Exit Sub
-			End If
-			If GPROCHK() = False Then
-				Exit Sub
-			End If
-		End If
-		If GVALCHK() = False Then
-			Exit Sub
-		End If
-		If MVALCHK() = False Then
-			Exit Sub
-		End If
-		'確定
-		LST_NO = CUR_NO
-		'--- ファンクションメッセージ
-		Call FUNCSET_RTN()
-		
-	End Sub
-	
-	Private Sub IMTX065_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX065.KeyDownEvent
-		
+
+    'A-CUST-20100610 Start
+    Private Sub IMTX065_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX065.Enter
+
+        'UPGRADE_NOTE: IMEMode は CtlIMEMode にアップグレードされました。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="A9E4979A-37FA-4718-9994-97DD76ED70A7"' をクリックしてください。
+        'IMTX065.CtlIMEMode = OsktxtLibV5.CIMEMODE.全角ひらがな 'A-20160726-
+        IMTX065.ImeMode = ImeMode.Hiragana                      'A-20250417
+
+        If CUR_NO = N065 Then Exit Sub
+
+        CUR_NO = N065
+
+        'チェック
+        If LST_NO <> n0 Then
+            If IPROCHK() = False Then
+                Exit Sub
+            End If
+            If GPROCHK() = False Then
+                Exit Sub
+            End If
+        End If
+        If GVALCHK() = False Then
+            Exit Sub
+        End If
+        If MVALCHK() = False Then
+            Exit Sub
+        End If
+        '確定
+        LST_NO = CUR_NO
+        '--- ファンクションメッセージ
+        Call FUNCSET_RTN()
+
+    End Sub
+
+	'Private Sub IMTX065_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX065.KeyDownEvent 'D-20250417
+	Private Sub IMTX065_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX065.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
 	'A-CUST-20100610 End
-	
+
 	Private Sub IMTX070_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX070.Enter
 		
 		If CUR_NO = N070 Then Exit Sub
@@ -5999,13 +6022,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX070_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX070.KeyDownEvent
-		
+
+	'Private Sub IMTX070_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX070.KeyDownEvent 'D-20250417
+	Private Sub IMTX070_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX070.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX080_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX080.Enter
 		
 		If CUR_NO = N080 Then Exit Sub
@@ -6033,13 +6057,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX080_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX080.KeyDownEvent
-		
+
+	'Private Sub IMTX080_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX080.KeyDownEvent 'D-20250417
+	Private Sub IMTX080_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX080.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX090_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX090.Enter
 		
 		If CUR_NO = N090 Then Exit Sub
@@ -6067,13 +6092,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX090_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX090.KeyDownEvent
-		
+
+	'Private Sub IMTX090_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX090.KeyDownEvent 'D-20240517
+	Private Sub IMTX090_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX090.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX100_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX100.Enter
 		Dim Index As Short = IMTX100.GetIndex(eventSender)
 		
@@ -6113,14 +6139,15 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX100_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX100.KeyDownEvent
+
+	'Private Sub IMTX100_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX100.KeyDownEvent 'D-20250417
+	Private Sub IMTX100_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX100.KeyDownEvent 'A-20250417
 		Dim Index As Short = IMTX100.GetIndex(eventSender)
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX130_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX130.Enter
 		Dim Index As Short = IMTX130.GetIndex(eventSender)
 		
@@ -6155,14 +6182,15 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX130_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX130.KeyDownEvent
+
+	'Private Sub IMTX130_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX130.KeyDownEvent 'D-20250417
+	Private Sub IMTX130_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX130.KeyDownEvent 'A-20250417
 		Dim Index As Short = IMTX130.GetIndex(eventSender)
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX140_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX140.Enter
 		Dim Index As Short = IMTX140.GetIndex(eventSender)
 		
@@ -6198,12 +6226,13 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX140_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX140.KeyDownEvent
+
+	'Private Sub IMTX140_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX140.KeyDownEvent 'D-20250417
+	Private Sub IMTX140_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX140.KeyDownEvent 'A-20250417
 		Dim Index As Short = IMTX140.GetIndex(eventSender)
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
 	'A-CUST20130212↓
 	Private Sub IMTX150_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX150.Enter
@@ -6236,21 +6265,22 @@ IPROCHK_N100_L:
 	End Sub
 	'A-CUST20130212↑
 	'A-CUST20130212↓
-	Private Sub IMTX150_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX150.KeyDownEvent
+	'Private Sub IMTX150_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX150.KeyDownEvent 'D-20250417
+	Private Sub IMTX150_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX150.KeyDownEvent 'A-20250417
 		Dim Index As Short = IMTX150.GetIndex(eventSender)
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
 	'A-CUST20130212↑
-	
+
 	'D-20250201↓
 	'Private Sub IMTX210_GotFocus()
-	
+
 	'If CUR_NO = N210 Then Exit Sub
-	
+
 	'CUR_NO = N210
-	
+
 	'チェック
 	'If LST_NO <> n0 Then
 	'If IPROCHK() = False Then
@@ -6270,21 +6300,21 @@ IPROCHK_N100_L:
 	'LST_NO = CUR_NO
 	'--- ファンクションメッセージ
 	'Call FUNCSET_RTN
-	
+
 	'End Sub
-	
+
 	'Private Sub IMTX210_KeyDown(KeyCode As Integer, Shift As Integer)
-	
+
 	'Call Form_KeyDown(KeyCode, Shift)
-	
+
 	'End Sub
-	
+
 	'Private Sub IMTX211_GotFocus()
-	
+
 	'If CUR_NO = N211 Then Exit Sub
-	
+
 	'CUR_NO = N211
-	
+
 	'チェック
 	'If LST_NO <> n0 Then
 	'If IPROCHK() = False Then
@@ -6304,16 +6334,16 @@ IPROCHK_N100_L:
 	'LST_NO = CUR_NO
 	'--- ファンクションメッセージ
 	'Call FUNCSET_RTN
-	
+
 	'End Sub
-	
+
 	'Private Sub IMTX211_KeyDown(KeyCode As Integer, Shift As Integer)
-	
+
 	'Call Form_KeyDown(KeyCode, Shift)
-	
+
 	'End Sub
 	'D-20250201↑
-	
+
 	Private Sub IMTX220_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX220.Enter
 		
 		If CUR_NO = N220 Then Exit Sub
@@ -6341,13 +6371,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX220_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX220.KeyDownEvent
-		
+
+	'Private Sub IMTX220_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX220.KeyDownEvent 'D-20250417
+	Private Sub IMTX220_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX220.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX230_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX230.Enter
 		
 		If CUR_NO = N230 Then Exit Sub
@@ -6375,13 +6406,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX230_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX230.KeyDownEvent
-		
+
+	'Private Sub IMTX230_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX230.KeyDownEvent 'D-20250417
+	Private Sub IMTX230_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX230.KeyDownEvent 'A-2025417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX240_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX240.Enter
 		
 		If CUR_NO = N240 Then Exit Sub
@@ -6409,20 +6441,21 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX240_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX240.KeyDownEvent
-		
+
+	'Private Sub IMTX240_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX240.KeyDownEvent 'D-20250417
+	Private Sub IMTX240_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX240.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	'D-20250201↓
 	'Private Sub IMTX250_GotFocus()
-	
+
 	'If CUR_NO = N250 Then Exit Sub
-	
+
 	'CUR_NO = N250
-	
+
 	'チェック
 	'If LST_NO <> n0 Then
 	'If IPROCHK() = False Then
@@ -6442,16 +6475,16 @@ IPROCHK_N100_L:
 	'LST_NO = CUR_NO
 	'--- ファンクションメッセージ
 	'Call FUNCSET_RTN
-	
+
 	'End Sub
-	
+
 	'Private Sub IMTX250_KeyDown(KeyCode As Integer, Shift As Integer)
-	
+
 	'Call Form_KeyDown(KeyCode, Shift)
-	
+
 	'End Sub
 	'D-20250201↑
-	
+
 	Private Sub IMTX260_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX260.Enter
 		
 		If CUR_NO = N260 Then Exit Sub
@@ -6479,14 +6512,15 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX260_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX260.KeyDownEvent
-		
+
+	'Private Sub IMTX260_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX260.KeyDownEvent 'D-20250417
+	Private Sub IMTX260_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX260.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	
+
+
 	'A-CUST20130212↓
 	Private Sub IMTX291_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX291.Enter
 		
@@ -6517,7 +6551,8 @@ IPROCHK_N100_L:
 	End Sub
 	'A-CUST20130212↑
 	'A-CUST20130212↓
-	Private Sub IMTX291_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX291.KeyDownEvent
+	'Private Sub IMTX291_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX291.KeyDownEvent 'D-20250417
+	Private Sub IMTX291_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX291.KeyDownEvent 'A-20250417
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
 	End Sub
 	'A-CUST20130212↑
@@ -6549,15 +6584,16 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX410_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX410.KeyDownEvent
-		
+
+	'Private Sub IMTX410_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX410.KeyDownEvent 'D-20250417
+	Private Sub IMTX410_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX410.KeyDownEvent 'A-20250417
+
 		CTRLTBL(N350_1).CTRL.TabStop = True
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	
+
+
 	Private Sub IMTX440_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX440.Enter
 		
 		If CUR_NO = N440 Then Exit Sub
@@ -6585,13 +6621,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX440_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX440.KeyDownEvent
-		
+
+	'Private Sub IMTX440_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX440.KeyDownEvent 'D-20250417
+	Private Sub IMTX440_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX440.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX480_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX480.Enter
 		
 		'日付データならば、/を抜いて表示する
@@ -6625,13 +6662,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX480_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX480.KeyDownEvent
-		
+
+	'Private Sub IMTX480_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX480.KeyDownEvent 'D-20250417
+	Private Sub IMTX480_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX480.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX490_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX490.Enter
 		
 		'日付データならば、/を抜いて表示する
@@ -6665,13 +6703,14 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX490_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX490.KeyDownEvent
-		
+
+	'Private Sub IMTX490_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX490.KeyDownEvent 'D-20250417
+	Private Sub IMTX490_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX490.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub IMTX510_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles IMTX510.Enter
 		
 		Debug.Print("IMTX510_GotFocus")
@@ -6712,21 +6751,22 @@ IPROCHK_N100_L:
 		Call FUNCSET_RTN()
 		
 	End Sub
-	
-	Private Sub IMTX510_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX510.KeyDownEvent
-		
+
+	'Private Sub IMTX510_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOsktxtLibV5.__ImText_KeyDownEvent) Handles IMTX510.KeyDownEvent 'D-20250417
+	Private Sub IMTX510_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As Control.AximText6.ITextEvents_KeyDownEvent) Handles IMTX510.KeyDownEvent 'A-20250417
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	
-	
+
+
+
 	Private Sub imtxDummy_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles imtxDummy.Enter
-		
+
 		'UPGRADE_WARNING: オブジェクト CTRLTBL(N300).CTRL.Index の既定プロパティを解決できませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6A50421D-15FE-4896-8A1B-2EC21E9037B2"' をクリックしてください。
-		Debug.Print("D" & CTRLTBL(N300).CTRL.Name & CTRLTBL(N300).CTRL.Index)
-		
-		
+		'Debug.Print("D" & CTRLTBL(N300).CTRL.Name & CTRLTBL(N300).CTRL.Index) 'D-20250417
+
+
 		'    If CUR_NO <= N290 Then'D-CUST20130212
 		If CUR_NO <= N291 Then 'A-cUST20130212
 			'CTRLTBL(N300).CTRL.SetFocus    'D-20250201
@@ -6744,75 +6784,78 @@ IPROCHK_N100_L:
 		'    Call Form_KeyDown(vbKeyDown, 0)
 		
 	End Sub
-	
-	Private Sub OPTO300_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO300.ClickEvent
+
+	'Private Sub OPTO300_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO300.ClickEvent 'D-20250417
+	Private Sub OPTO300_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO300.Click 'A-20250417
 		Dim Index As Short = OPTO300.GetIndex(eventSender)
-		
+
 		Debug.Print("OPTO300" & Index & "Clicked")
 		Call OPTO300_Enter(OPTO300.Item(Index), New System.EventArgs())
-		
+
 	End Sub
-	
+
 	Private Sub OPTO300_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO300.Enter
-		Dim Index As Short = OPTO300.GetIndex(eventSender)
-		'   管理区分OptionButton
-		
-		Dim OptBefore As Short
-		
-		OptBefore = WKB300
-		WKB300 = Index
-		
-		System.Diagnostics.Debug.Assert(WKB300 = Index, "")
-		Debug.Print("OPTO300" & OPTO300(Index).Value)
-		
-		CTRLTBL(N300).CTRL.TabStop = True
-		
-		KB.kanri_kubn = "" & Index
-		
-		'--- 自分の場合は処理を抜ける(ﾏｳｽで同じ項目を選択した場合など) ---
-		If CUR_NO = N300 Then GoTo OPTO300_GotFocus_PropartySetting
-		
-		'--- ｶﾚﾝﾄを自分自身にｾｯﾄ ---
-		CUR_NO = N300
-		
-		
-		'チェック
-		If LST_NO <> n0 Then
-			If IPROCHK() = False Then
-				WKB300 = OptBefore
-				OPTO300(WKB300).Value = True
-				
-				Exit Sub
-			End If
-			If GPROCHK() = False Then
-				Exit Sub
-			End If
-		End If
-		If GVALCHK() = False Then
-			Exit Sub
-		End If
-		If MVALCHK() = False Then
-			Exit Sub
-		End If
-		'確定
-		LST_NO = CUR_NO
-		'--- ファンクションメッセージ
-		Call FUNCSET_RTN()
-OPTO300_GotFocus_PropartySetting: 
-		
-		'   --- ｲﾝﾃﾞｸｽをｵﾌﾟｼｮﾝﾎﾞﾀﾝの確定値として取得する ---
-		CTRLTBL(N300).CTRL = Me.OPTO300(Index)
-		NXT_NO = N300
-		Call FOCUS_SET()
-		
-	End Sub
-	
-	Private Sub OPTO300_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO300.KeyDownEvent
+        Dim Index As Short = OPTO300.GetIndex(eventSender)
+        '   管理区分OptionButton
+
+        Dim OptBefore As Short
+
+        OptBefore = WKB300
+        WKB300 = Index
+
+        System.Diagnostics.Debug.Assert(WKB300 = Index, "")
+        'Debug.Print("OPTO300" & OPTO300(Index).Value) 'D-20250417
+
+        CTRLTBL(N300).CTRL.TabStop = True
+
+        KB.kanri_kubn = "" & Index
+
+        '--- 自分の場合は処理を抜ける(ﾏｳｽで同じ項目を選択した場合など) ---
+        If CUR_NO = N300 Then GoTo OPTO300_GotFocus_PropartySetting
+
+        '--- ｶﾚﾝﾄを自分自身にｾｯﾄ ---
+        CUR_NO = N300
+
+
+        'チェック
+        If LST_NO <> n0 Then
+            If IPROCHK() = False Then
+                WKB300 = OptBefore
+                'OPTO300(WKB300).Value = True 'D-20250417
+                OPTO300(WKB300).Checked = True 'A-20250417
+
+                Exit Sub
+            End If
+            If GPROCHK() = False Then
+                Exit Sub
+            End If
+        End If
+        If GVALCHK() = False Then
+            Exit Sub
+        End If
+        If MVALCHK() = False Then
+            Exit Sub
+        End If
+        '確定
+        LST_NO = CUR_NO
+        '--- ファンクションメッセージ
+        Call FUNCSET_RTN()
+OPTO300_GotFocus_PropartySetting:
+
+        '   --- ｲﾝﾃﾞｸｽをｵﾌﾟｼｮﾝﾎﾞﾀﾝの確定値として取得する ---
+        CTRLTBL(N300).CTRL = Me.OPTO300(Index)
+        NXT_NO = N300
+        Call FOCUS_SET()
+
+    End Sub
+
+	'Private Sub OPTO300_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO300.KeyDownEvent 'D-20250417
+	Private Sub OPTO300_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles OPTO300.KeyDown 'A-20250417
 		Dim Index As Short = OPTO300.GetIndex(eventSender)
 		'########## ｶﾚﾝﾄを自分自身にｾｯﾄ ##########
 		CUR_NO = N300
 		WKB300 = Index
-		
+
 		'########## ｶｰｿﾙの左右ﾎﾞﾀﾝによりｵﾌﾟｼｮﾝﾎﾞﾀﾝ内のﾌｫｰｶｽを移動する ##########
 		Select Case eventArgs.KeyCode
 			Case System.Windows.Forms.Keys.Left
@@ -6825,7 +6868,7 @@ OPTO300_GotFocus_PropartySetting:
 			Case System.Windows.Forms.Keys.Right
 				WKB300 = WKB300 + 1
 				If WKB300 > n2 Then WKB300 = n2
-				
+
 				'========== ｵﾌﾞｼﾞｪｸﾄを設定しﾌｫｰｶｽ移動する ==========
 				Call OPTO300_Enter(OPTO300.Item(WKB300), New System.EventArgs())
 				'Call FOCUS_SET
@@ -6842,12 +6885,13 @@ OPTO300_GotFocus_PropartySetting:
 		test = ActiveControl.Name
 	End Sub
 	'A-CUST20130212↑
-	Private Sub OPTO310_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO310.ClickEvent
+	'Private Sub OPTO310_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO310.ClickEvent 'D-20250417
+	Private Sub OPTO310_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO310.Click 'A-20250417
 		Dim Index As Short = OPTO310.GetIndex(eventSender)
 		Call OPTO310_Enter(OPTO310.Item(Index), New System.EventArgs())
-		
+
 	End Sub
-	
+
 	Private Sub OPTO310_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO310.Enter
 		Dim Index As Short = OPTO310.GetIndex(eventSender)
 		'   消費税OptionButton
@@ -6874,8 +6918,9 @@ OPTO300_GotFocus_PropartySetting:
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
 				WKB310 = OptBefore
-				OPTO310(WKB310).Value = True
-				
+				'OPTO310(WKB310).Value = True 'D-20250417
+				OPTO310(WKB310).Checked = True 'A-20250417
+
 				Exit Sub
 			End If
 			If GPROCHK() = False Then
@@ -6917,13 +6962,14 @@ OPTO310_GotFocus_PropartySetting:
 		Call FOCUS_SET()
 		
 	End Sub
-	
-	Private Sub OPTO310_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO310.KeyDownEvent
+
+	'Private Sub OPTO310_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO310.KeyDownEvent 'D-20250417
+	Private Sub OPTO310_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles OPTO310.KeyDown 'A-20250417
 		Dim Index As Short = OPTO310.GetIndex(eventSender)
 		'########## ｶﾚﾝﾄを自分自身にｾｯﾄ ##########
 		CUR_NO = N310
 		WKB310 = Index
-		
+
 		'########## ｶｰｿﾙの左右ﾎﾞﾀﾝによりｵﾌﾟｼｮﾝﾎﾞﾀﾝ内のﾌｫｰｶｽを移動する ##########
 		Select Case eventArgs.KeyCode
 			Case System.Windows.Forms.Keys.Left
@@ -6943,13 +6989,14 @@ OPTO310_GotFocus_PropartySetting:
 		End Select
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
 	End Sub
-	
-	Private Sub OPTO320_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO320.ClickEvent
+
+	'Private Sub OPTO320_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO320.ClickEvent 'D-20250417
+	Private Sub OPTO320_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO320.Click 'A-20250417
 		Dim Index As Short = OPTO320.GetIndex(eventSender)
 		Call OPTO320_Enter(OPTO320.Item(Index), New System.EventArgs())
-		
+
 	End Sub
-	
+
 	Private Sub OPTO320_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO320.Enter
 		Dim Index As Short = OPTO320.GetIndex(eventSender)
 		'   棚卸単価OptionButton
@@ -6970,7 +7017,8 @@ OPTO310_GotFocus_PropartySetting:
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
 				WKB320 = OptBefore
-				OPTO320(WKB320).Value = True
+				'OPTO320(WKB320).Value = True 'D-0250417
+				OPTO320(WKB320).Checked = True 'A-20250417
 				Exit Sub
 			End If
 			If GPROCHK() = False Then
@@ -6995,13 +7043,14 @@ OPTO320_GotFocus_PropartySetting:
 		Call FOCUS_SET()
 		
 	End Sub
-	
-	Private Sub OPTO320_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO320.KeyDownEvent
+
+	'Private Sub OPTO320_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO320.KeyDownEvent 'D-20250417
+	Private Sub OPTO320_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles OPTO320.KeyDown 'A-20250417
 		Dim Index As Short = OPTO320.GetIndex(eventSender)
 		'########## ｶﾚﾝﾄを自分自身にｾｯﾄ ##########
 		CUR_NO = N320
 		WKB320 = Index
-		
+
 		'########## ｶｰｿﾙの左右ﾎﾞﾀﾝによりｵﾌﾟｼｮﾝﾎﾞﾀﾝ内のﾌｫｰｶｽを移動する ##########
 		Select Case eventArgs.KeyCode
 			Case System.Windows.Forms.Keys.Left
@@ -7014,22 +7063,23 @@ OPTO320_GotFocus_PropartySetting:
 			Case System.Windows.Forms.Keys.Right
 				WKB320 = WKB320 + 1
 				If WKB320 > n2 Then WKB320 = n2
-				
+
 				'========== ｵﾌﾞｼﾞｪｸﾄを設定しﾌｫｰｶｽ移動する ==========
 				Call OPTO320_Enter(OPTO320.Item(WKB320), New System.EventArgs())
 				'Call FOCUS_SET
 				CUR_NO = N320
 		End Select
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	Private Sub OPTO330_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO330.ClickEvent
+
+	'Private Sub OPTO330_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO330.ClickEvent 'D-20250417
+	Private Sub OPTO330_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO330.Click 'A-20250417
 		Dim Index As Short = OPTO330.GetIndex(eventSender)
 		Call OPTO330_Enter(OPTO330.Item(Index), New System.EventArgs())
-		
+
 	End Sub
-	
+
 	Private Sub OPTO330_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO330.Enter
 		Dim Index As Short = OPTO330.GetIndex(eventSender)
 		'   在庫管理OptionButton
@@ -7051,8 +7101,9 @@ OPTO320_GotFocus_PropartySetting:
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
 				WKB330 = OptBefore
-				OPTO330(WKB330).Value = True
-				
+				'OPTO330(WKB330).Value = True 'D-20250417
+				OPTO330(WKB330).Checked = True 'A-20250417
+
 				Exit Sub
 			End If
 			If GPROCHK() = False Then
@@ -7077,13 +7128,14 @@ OPTO330_GotFocus_PropartySetting:
 		Call FOCUS_SET()
 		
 	End Sub
-	
-	Private Sub OPTO330_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO330.KeyDownEvent
+
+	'Private Sub OPTO330_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO330.KeyDownEvent 'D-20250417
+	Private Sub OPTO330_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles OPTO330.KeyDown 'A-20250417
 		Dim Index As Short = OPTO330.GetIndex(eventSender)
 		'########## ｶﾚﾝﾄを自分自身にｾｯﾄ ##########
 		CUR_NO = N330
 		WKB330 = Index
-		
+
 		'########## ｶｰｿﾙの左右ﾎﾞﾀﾝによりｵﾌﾟｼｮﾝﾎﾞﾀﾝ内のﾌｫｰｶｽを移動する ##########
 		Select Case eventArgs.KeyCode
 			Case System.Windows.Forms.Keys.Left
@@ -7096,22 +7148,23 @@ OPTO330_GotFocus_PropartySetting:
 			Case System.Windows.Forms.Keys.Right
 				WKB330 = WKB330 + 1
 				If WKB330 > n2 Then WKB330 = n2
-				
+
 				'========== ｵﾌﾞｼﾞｪｸﾄを設定しﾌｫｰｶｽ移動する ==========
 				Call OPTO330_Enter(OPTO330.Item(WKB330), New System.EventArgs())
 				'Call FOCUS_SET
 				CUR_NO = N330
 		End Select
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
-	Private Sub OPTO340_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO340.ClickEvent
+
+	'Private Sub OPTO340_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO340.ClickEvent 'D-20250417
+	Private Sub OPTO340_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO340.Click 'A-20250417
 		Dim Index As Short = OPTO340.GetIndex(eventSender)
 		Call OPTO340_Enter(OPTO340.Item(Index), New System.EventArgs())
-		
+
 	End Sub
-	
+
 	Private Sub OPTO340_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO340.Enter
 		Dim Index As Short = OPTO340.GetIndex(eventSender)
 		'   FAX送信OptionButton
@@ -7133,7 +7186,8 @@ OPTO330_GotFocus_PropartySetting:
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
 				WKB340 = OptBefore
-				OPTO340(WKB340).Value = True
+				'OPTO340(WKB340).Value = True 'D-20250417
+				OPTO340(WKB340).Checked = True 'A-20250417
 				Exit Sub
 			End If
 			If GPROCHK() = False Then
@@ -7158,13 +7212,14 @@ OPTO340_GotFocus_PropartySetting:
 		Call FOCUS_SET()
 		
 	End Sub
-	
-	Private Sub OPTO340_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO340.KeyDownEvent
+
+	'Private Sub OPTO340_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO340.KeyDownEvent 'D-20250417
+	Private Sub OPTO340_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles OPTO340.KeyDown 'A-20250417
 		Dim Index As Short = OPTO340.GetIndex(eventSender)
 		'########## ｶﾚﾝﾄを自分自身にｾｯﾄ ##########
 		CUR_NO = N340
 		WKB340 = Index
-		
+
 		'########## ｶｰｿﾙの左右ﾎﾞﾀﾝによりｵﾌﾟｼｮﾝﾎﾞﾀﾝ内のﾌｫｰｶｽを移動する ##########
 		Select Case eventArgs.KeyCode
 			Case System.Windows.Forms.Keys.Left
@@ -7177,16 +7232,16 @@ OPTO340_GotFocus_PropartySetting:
 			Case System.Windows.Forms.Keys.Right
 				WKB340 = WKB340 + 1
 				If WKB340 > n2 Then WKB340 = n2
-				
+
 				'========== ｵﾌﾞｼﾞｪｸﾄを設定しﾌｫｰｶｽ移動する ==========
 				Call OPTO340_Enter(OPTO340.Item(WKB340), New System.EventArgs())
 				'Call FOCUS_SET
 				CUR_NO = N340
 		End Select
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub OPTO999_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles OPTO999.Enter
 		Dim Index As Short = OPTO999.GetIndex(eventSender)
 		
@@ -7209,7 +7264,8 @@ OPTO340_GotFocus_PropartySetting:
 		'チェック
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
-				OPTO999(KBKBN).Value = True
+				'OPTO999(KBKBN).Value = True
+				OPTO999(KBKBN).Checked = True
 				Exit Sub
 			End If
 			If GPROCHK() = False Then
@@ -7258,13 +7314,14 @@ OPTO999_SELF:
 		'A-20250305-E
 		
 	End Sub
-	
-	Private Sub OPTO999_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO999.KeyDownEvent
+
+	'Private Sub OPTO999_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskoptLibV5.__OSKOptBtn_KeyDownEvent) Handles OPTO999.KeyDownEvent 'D-20250417
+	Private Sub OPTO999_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles OPTO999.KeyDown 'A-20250417
 		Dim Index As Short = OPTO999.GetIndex(eventSender)
 		'########## ｶﾚﾝﾄを自分自身にｾｯﾄ ##########
 		CUR_NO = N999
 		KBKBN = Index
-		
+
 		'########## ｶｰｿﾙの左右ﾎﾞﾀﾝによりｵﾌﾟｼｮﾝﾎﾞﾀﾝ内のﾌｫｰｶｽを移動する ##########
 		Select Case eventArgs.KeyCode
 			Case System.Windows.Forms.Keys.Left
@@ -7276,36 +7333,36 @@ OPTO999_SELF:
 			Case System.Windows.Forms.Keys.Right
 				KBKBN = KBKBN + 1
 				If KBKBN > n3 Then KBKBN = n3
-				
+
 				'========== ｵﾌﾞｼﾞｪｸﾄを設定しﾌｫｰｶｽ移動する ==========
 				Call FOCUS_SET()
 				CUR_NO = N999
 		End Select
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
 	End Sub
-	
-	
-	
+
+
+
 	'UPGRADE_ISSUE: PictureBox イベント picDummy.KeyDown はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="ABD9AF39-7E24-4AFF-AD8D-3675C1AA3054"' をクリックしてください。
 	Private Sub picDummy_KeyDown(ByRef KeyCode As Short, ByRef Shift As Short)
 		
 		'    Call Form_KeyDown(KeyCode, Shift)
 		
 	End Sub
-	
-	
-	
-	Private Sub SPR420_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_ClickEvent) Handles SPR420.ClickEvent
-		
+
+
+	'Private Sub SPR420_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_ClickEvent) Handles SPR420.ClickEvent 'D-20250417
+	Private Sub SPR420_ClickEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpread._DSpreadEvents_ClickEvent) Handles SPR420.ClickEvent 'A-20250417
+
 		Dim IROW As Integer
-		
+
 		If SPR420.MaxRows <= 0 Then Exit Sub
 		If bSPRNotReady Then Exit Sub
-		
+
 		'値が入力されている最後のセルの位置+１を取得する
 		'    iRow = SPR420.DataRowCnt + 1
 		''''Debug.Print "DataRowCnt = "; SPR420.DataRowCnt
-		
+
 		'クリックしたセルが最後のセルの位置+１より大きい場合、最後のセルの位置+１をアクティブにする
 		'    If ROW > iRow Then
 		'        SPR420.Col = 1
@@ -7315,95 +7372,96 @@ OPTO999_SELF:
 		'        SPR420.Action = SS_ACTION_SELECT_BLOCK
 		'        SPR420.Action = SS_ACTION_ACTIVE_CELL
 		'    End If
-		
-		
+
+
 	End Sub
-	
-	Private Sub SPR420_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles SPR420.Enter
-		
-		If CUR_NO = N420 Then Exit Sub
-		
-		CUR_NO = N420
-		
-		'チェック
-		If LST_NO <> n0 Then
-			If IPROCHK() = False Then
-				bSPRNotReady = True
-				Exit Sub
-			End If
-			If GPROCHK() = False Then
-				bSPRNotReady = True
-				Exit Sub
-			End If
-		Else
-			bSPRNotReady = True
-			Exit Sub
-		End If
-		If GVALCHK() = False Then
-			bSPRNotReady = True
-			Exit Sub
-		End If
-		If MVALCHK() = False Then
-			bSPRNotReady = True
-			Exit Sub
-		End If
-		
-		'確定
-		bSPRNotReady = False
-		
-		If SPR420.MaxRows <= 0 Then
-			SPR420.MaxRows = 1
-			SPR420.set_RowHeight(1, SPR_HEIGHT)
-			Call SpreadProperty(1)
-		End If
-		
-		
-		''''Call SpreadZeroTrim(1)
-		If lst_row = 0 Then
-			Call SpreadZeroTrim(1)
-		ElseIf lst_row < 0 Then 
-			Call SpreadZeroTrim(-1)
-		Else
-			Call SpreadZeroTrim(lst_row)
-		End If
-		
-		
-		LST_NO = CUR_NO
-		'--- ファンクションメッセージ
-		Call FUNCSET_RTN()
-		
-	End Sub
-	
-	Private Sub SPR420_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_KeyDownEvent) Handles SPR420.KeyDownEvent
-		
+
+    Private Sub SPR420_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles SPR420.Enter
+
+        If CUR_NO = N420 Then Exit Sub
+
+        CUR_NO = N420
+
+        'チェック
+        If LST_NO <> n0 Then
+            If IPROCHK() = False Then
+                bSPRNotReady = True
+                Exit Sub
+            End If
+            If GPROCHK() = False Then
+                bSPRNotReady = True
+                Exit Sub
+            End If
+        Else
+            bSPRNotReady = True
+            Exit Sub
+        End If
+        If GVALCHK() = False Then
+            bSPRNotReady = True
+            Exit Sub
+        End If
+        If MVALCHK() = False Then
+            bSPRNotReady = True
+            Exit Sub
+        End If
+
+        '確定
+        bSPRNotReady = False
+
+        If SPR420.MaxRows <= 0 Then
+            SPR420.MaxRows = 1
+            SPR420.set_RowHeight(1, SPR_HEIGHT)
+            Call SpreadProperty(1)
+        End If
+
+
+        ''''Call SpreadZeroTrim(1)
+        If lst_row = 0 Then
+            Call SpreadZeroTrim(1)
+        ElseIf lst_row < 0 Then
+            Call SpreadZeroTrim(-1)
+        Else
+            Call SpreadZeroTrim(lst_row)
+        End If
+
+
+        LST_NO = CUR_NO
+        '--- ファンクションメッセージ
+        Call FUNCSET_RTN()
+
+    End Sub
+
+	'Private Sub SPR420_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_KeyDownEvent) Handles SPR420.KeyDownEvent 'D-20250417
+	Private Sub SPR420_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpread._DSpreadEvents_KeyDownEvent) Handles SPR420.KeyDownEvent 'A-20250417
+
 		Dim ROW As Integer
 		Dim Col As Integer
-		
+
 		Dim IROW As Short
-		
+
 		'F2,F3,F4の場合は、無視する
 		'    If KeyCode = vbKeyF2 Or KeyCode = vbKeyF4 Then
 		'        Call Form_KeyDown(KeyCode, Shift)
 		'    '    KeyCode = 0
 		''        Exit Sub
 		'    End If
-		
+
 		SS_KEYCODE = eventArgs.KeyCode
-		
+
 		Dim iPrev As Short
 		Select Case eventArgs.KeyCode
-			
+
 			'        Case vbKeyEscape    '   終了
 			'            Call CMDOFNC_Click(0)
 			'            KeyCode = 0
 			'            Exit Sub
-			
+
 			Case System.Windows.Forms.Keys.F3
 				Call CMDOFNC_ClickEvent(CMDOFNC.Item(3), New System.EventArgs())
 				Col = 1
 				ROW = SPR420.ActiveRow
 				SPR420.Col = Col
-				SPR420.ROW = ROW
+				SPR420.Row = ROW
 				SPR420.Col2 = Col
 				SPR420.Row2 = ROW
 				SPR420.Action = SS_ACTION_SELECT_BLOCK
@@ -7411,7 +7469,7 @@ OPTO999_SELF:
 				''''DoEvents
 				eventArgs.KeyCode = 0
 				Exit Sub
-				
+
 			Case System.Windows.Forms.Keys.F5
 				''''        Call CMDOFNC_Click(5)
 				Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
@@ -7419,21 +7477,21 @@ OPTO999_SELF:
 				System.Windows.Forms.Application.DoEvents()
 				eventArgs.KeyCode = 0
 				Exit Sub
-				
+
 			Case System.Windows.Forms.Keys.F12
 				''''        Call CMDOFNC_Click(12)
 				''''        KeyCode = 0
 				Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
 				System.Windows.Forms.Application.DoEvents()
 				Exit Sub
-				
-				
+
+
 				'Enter Key,↓
 			Case System.Windows.Forms.Keys.Return, System.Windows.Forms.Keys.Down '13, 40
 				'Active Cellが空の場合は、次の項目へ移動する
-				SPR420.ROW = SPR420.ActiveRow
+				SPR420.Row = SPR420.ActiveRow
 				SPR420.Col = 1
-				
+
 				If SPR420.Text = "" And SPR420.ActiveRow > SPR420.DataRowCnt Then
 					eventArgs.KeyCode = 0
 					NXT_NO = IIf(eventArgs.KeyCode = System.Windows.Forms.Keys.Return, CTRLTBL(N420).INEXT, CTRLTBL(N420).IDOWN)
@@ -7443,29 +7501,29 @@ OPTO999_SELF:
 					'   2000/01/23  Add KOKOKARA
 					If SPR420.MaxRows <= SPR420.DataRowCnt Then
 						SPR420.MaxRows = SPR420.DataRowCnt + 1
-						SPR420.ROW = SPR420.DataRowCnt + 1
+						SPR420.Row = SPR420.DataRowCnt + 1
 						''''SPR420.CellType = SS_CELL_TYPE_FLOAT
-						SPR420.set_RowHeight(SPR420.ROW, SPR_HEIGHT)
-						Call SpreadProperty((SPR420.ROW))
-						
+						SPR420.set_RowHeight(SPR420.Row, SPR_HEIGHT)
+						Call SpreadProperty((SPR420.Row))
+
 					End If
 					'   2000/01/23  Add KOKOMADE
 				End If
-				
+
 				'↑
 			Case System.Windows.Forms.Keys.Up '38
 				'Active Cellが先頭行で未確定の場合は、行をクリアし、前の項目へ移動する
-				SPR420.ROW = SPR420.ActiveRow
+				SPR420.Row = SPR420.ActiveRow
 				SPR420.Col = 3
 				If SPR420.Text <> "1" Then '2000/01/23 "1"->1
-					IROW = SPR420.ROW
+					IROW = SPR420.Row
 					'行をクリアする
 					SPR420.Col = -1
 					SPR420.Action = SS_ACTION_CLEAR_TEXT
 				End If
-				If SPR420.ROW = 1 Then
+				If SPR420.Row = 1 Then
 					'前の項目へ移動する
-					
+
 					eventArgs.KeyCode = 0
 					NXT_NO = CTRLTBL(N420).IBACK
 					Call FOCUS_SET()
@@ -7477,30 +7535,30 @@ OPTO999_SELF:
 			Case System.Windows.Forms.Keys.Left '37
 				'F8（削除）
 			Case System.Windows.Forms.Keys.F8 '119
-				
+
 				'   2000/01/24          Add                     KOKOKARA
 				If Trim(CMDOFNC(8).Text) = "" Then
 					Exit Sub
 				End If
-				SPR420.ROW = SPR420.ActiveRow
+				SPR420.Row = SPR420.ActiveRow
 				SPR420.Col = 1
-				If Trim(SPR420.Text) = "" And SPR420.ROW > SPR420.DataRowCnt Then
+				If Trim(SPR420.Text) = "" And SPR420.Row > SPR420.DataRowCnt Then
 					Exit Sub
 				End If
 				'   2000/01/24          Add                     KOKOMADE
-				
+
 				'行の削除
-				SPR420.ROW = SPR420.ActiveRow
+				SPR420.Row = SPR420.ActiveRow
 				SPR420.Action = SS_ACTION_DELETE_ROW
-				
+
 				IROW = SPR420.ActiveRow
 				SPR420.Col = 1
-				SPR420.ROW = IROW
+				SPR420.Row = IROW
 				SPR420.Col2 = 1
 				SPR420.Row2 = IROW
 				SPR420.Action = SS_ACTION_SELECT_BLOCK
 				SPR420.Action = SS_ACTION_ACTIVE_CELL
-				
+
 				'   2000/01/23              Add             KOKOKARA
 				If SPR420.MaxRows > 1 Then
 					SPR420.MaxRows = SPR420.MaxRows - 1
@@ -7508,7 +7566,7 @@ OPTO999_SELF:
 				Call SpreadZeroTrim((SPR420.ActiveRow))
 				'   2000/01/23              Add             KOKOMADE
 				Call FUNCSET_RTN()
-				
+
 				'        SendKeys "{TAB}"
 				'        SendKeys "{ESC}"
 				'   Base1配列SUBを実行
@@ -7516,49 +7574,50 @@ OPTO999_SELF:
 				'            Call FOCUS_SET
 				'           マウスでクリックされた場合はこれでよいが、
 				'           F8KeyDownから来たときは
-				
-				
+
+
 				'その他
 			Case Else
 				Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(eventArgs.KeyCode Or eventArgs.Shift * &H10000))
-				
+
 		End Select
-		
+
 		Call FUNCSET_RTN()
-		
+
 	End Sub
-	
-	
-	Private Sub SPR420_LeaveCell(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_LeaveCellEvent) Handles SPR420.LeaveCell
-		
+
+	'Private Sub SPR420_LeaveCell(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_LeaveCellEvent) Handles SPR420.LeaveCell 'D-20240517
+	Private Sub SPR420_LeaveCell(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpread._DSpreadEvents_LeaveCellEvent) Handles SPR420.LeaveCell 'A-20250417
+
 		Dim strCode As String
 		Dim strName As String
 		Dim iReturn As Short
-		
+
 		'           2000/01/24      Add     KOKOKARA
 		If bSPRNotReady Then
 			Exit Sub
 		End If
 		'           2000/01/24      Add     KOKOMADE
 		Debug.Print("NewROW=" & eventArgs.NewRow & "NewCol=" & eventArgs.NewCol)
-		
+
 		If eventArgs.NewRow = 0 Then
 			eventArgs.Cancel = True
 			Exit Sub
 		End If
-		
-		
-		'入力値を取得する
-		SPR420.Col = Col
-		SPR420.ROW = ROW
+
+
+        '入力値を取得する
+        'SPR420.Col = Col 'D-20250417
+        SPR420.Col = eventArgs.Col 'A-20250417
+        SPR420.Row = ROW
 		SPR420.Text = VB6.Format(SPR420.Text, "0000")
 		strCode = SPR420.Text
-		
+
 		'    If Trim(strCode) = "" Then
 		'
 		'        Exit Sub
 		'    End If
-		
+
 		'   部所存在チェック
 		''''strName = DecodeBUSHO(strCode)
 		strName = CduDecodeBUSHO(strCode)
@@ -7567,15 +7626,15 @@ OPTO999_SELF:
 		If iReturn <> F_OFF Then
 			strName = ""
 		End If
-		
+
 		Dim strUnchanged As String
 		Dim UnchangedName As String
 		If strName = "" Or strName = "-" Then
 			'   エラーのとき
-			
+
 			ERRSW = F_ERR
 			ENDSW = F_END
-			
+
 			''''''''If NewRow < SPR420.DataRowCnt Then      'ROW Then
 			If eventArgs.NewRow < ROW Then 'ROW Then
 				'   検索分類コードをもとの値に戻す。
@@ -7586,25 +7645,25 @@ OPTO999_SELF:
 				UnchangedName = CduDecodeBUSHO(strUnchanged)
 				SPR420.Col = 2
 				SPR420.Text = UnchangedName
-				
+
 				'   確定フラグ
 				SPR420.Col = 3
-				SPR420.ROW = ROW
+				SPR420.Row = ROW
 				SPR420.Text = IIf(Len(strUnchanged) > 0, "1", "")
-				
+
 				'   前方への移動なら許すケース
 				If eventArgs.NewRow > 0 Then
 					SPR420.Col = 1
-					SPR420.ROW = eventArgs.NewRow
+					SPR420.Row = eventArgs.NewRow
 					SPR420.Col2 = 1
 					SPR420.Row2 = eventArgs.NewRow
 					SPR420.Action = SS_ACTION_SELECT_BLOCK
 					SPR420.Action = SS_ACTION_ACTIVE_CELL
 					Call SpreadZeroTrim(eventArgs.NewRow)
 				End If
-				
+
 			Else
-				
+
 				If strName = "-" Then
 					ZAER_KN = n0
 					ZAER_CD = 314
@@ -7613,61 +7672,61 @@ OPTO999_SELF:
 					strName = ""
 					Call ZAER_SUB()
 				End If
-				
+
 				SPR420.Col = 2
 				SPR420.Text = strName
 				SPR420.Col = 1
 				SPR420.Text = strCode
 				'   フォーカスをもとのセルに戻す。移動を許さないケース
 				SPR420.Col = 1 'Col
-				SPR420.ROW = ROW
+				SPR420.Row = ROW
 				SPR420.Col2 = 1 'Col
 				SPR420.Row2 = ROW
 				SPR420.Action = SS_ACTION_SELECT_BLOCK
 				SPR420.Action = SS_ACTION_ACTIVE_CELL
 				Call SpreadZeroTrim(ROW)
-				
+
 			End If
-			
+
 			If SPR420.MaxRows > SPR420.DataRowCnt + 1 Then
 				Debug.Print("ERR:" & SPR420.MaxRows & SPR420.DataRowCnt)
 				'            SPR420.ROW = SPR420.MaxRows
 				'            SPR420.Action = SS_ACTION_DELETE_ROW
 				SPR420.MaxRows = SPR420.DataRowCnt + 1
 			End If
-			
+
 			Exit Sub
-			
+
 		End If
-		
+
 		'データを各項目に表示する
-		SPR420.ROW = ROW
-		
+		SPR420.Row = ROW
+
 		SPR420.Col = 1
 		SPR420.Text = strCode
 		SPR420.Col = 2
 		SPR420.Text = strName
 		SPR420.Col = 4
 		SPR420.Text = strCode
-		
+
 		'確定フラグ
 		SPR420.Col = 3
 		SPR420.Text = "1"
-		
+
 		lst_row = eventArgs.NewRow '   これが正解ですよ。          2000/01/18
-		
+
 		If eventArgs.NewCol <> 1 Then
 			eventArgs.Cancel = True
 		Else
 			SpreadZeroTrim((eventArgs.NewRow))
 		End If
 		Call FUNCSET_RTN()
-		
-		
+
+
 	End Sub
-	
-	
-	
+
+
+
 	Private Sub SpreadZeroTrim(ByRef lRow As Integer)
 		
 		Dim strCut As String
@@ -7686,50 +7745,50 @@ OPTO999_SELF:
 		SPR420.Text = strCut
 		
 	End Sub
-	
-	
-	Private Sub SPR420_TopLeftChange(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_TopLeftChangeEvent) Handles SPR420.TopLeftChange
-		
+
+	'Private Sub SPR420_TopLeftChange(ByVal eventSender As System.Object, ByVal eventArgs As AxFPSpreadADO._DSpreadEvents_TopLeftChangeEvent) Handles SPR420.TopLeftChange 'D-20250417
+	Private Sub SPR420_TopChange(ByVal eventSender As System.Object, ByVal eventArgs As FarPoint.Win.Spread.TopChangeEventArgs) Handles SPR420.TopChange 'A-20250417
+
 		Dim nRow As Integer '   スクロール上限制限Row
 		Dim IROW As Integer '   スクロールTopRow
 		Dim aRow As Integer '   現在Row
-		
-		
+
+
 		If ByMyself Then Exit Sub
-		
-		
+
+
 		aRow = SPR420.ActiveRow
 		nRow = SPR420.DataRowCnt + 1
 		''''nRow = nRow - 4
 		nRow = nRow - 2 '   2000/01/26 Fix
 		nRow = IIf(nRow < 0, 0, nRow)
-		
+
 		IROW = SPR420.TopRow
-		
+
 		''''If iRow > (nRow - 4) Then
 		If IROW > nRow Then
 			ByMyself = True
-			
+
 			SPR420.Col = 1
-			SPR420.ROW = nRow
+			SPR420.Row = nRow
 			SPR420.Col2 = 1
 			SPR420.Row2 = nRow
 			SPR420.Action = SS_ACTION_SELECT_BLOCK
 			SPR420.Action = SS_ACTION_ACTIVE_CELL
-			
-			
+
+
 			If aRow > nRow Then
 				SPR420.Col = 1
-				SPR420.ROW = aRow
+				SPR420.Row = aRow
 				SPR420.Col2 = 1
 				SPR420.Row2 = aRow
 				SPR420.Action = SS_ACTION_SELECT_BLOCK
 				SPR420.Action = SS_ACTION_ACTIVE_CELL
 			End If
-			
+
 			ByMyself = False
 		End If
-		
+
 		'    Dim nRow As Long
 		'    Dim iRow As Long
 		'
@@ -7753,9 +7812,77 @@ OPTO999_SELF:
 		'        ByMyself = False
 		'    End If
 		'
-		
+
 	End Sub
-	
+
+	Private Sub SPR420_LeftChange(ByVal eventSender As System.Object, ByVal eventArgs As FarPoint.Win.Spread.LeftChangeEventArgs) Handles SPR420.LeftChange 'A-20250417
+
+		Dim nRow As Integer '   スクロール上限制限Row
+		Dim IROW As Integer '   スクロールTopRow
+		Dim aRow As Integer '   現在Row
+
+
+		If ByMyself Then Exit Sub
+
+
+		aRow = SPR420.ActiveRow
+		nRow = SPR420.DataRowCnt + 1
+		''''nRow = nRow - 4
+		nRow = nRow - 2 '   2000/01/26 Fix
+		nRow = IIf(nRow < 0, 0, nRow)
+
+		IROW = SPR420.TopRow
+
+		''''If iRow > (nRow - 4) Then
+		If IROW > nRow Then
+			ByMyself = True
+
+			SPR420.Col = 1
+			SPR420.Row = nRow
+			SPR420.Col2 = 1
+			SPR420.Row2 = nRow
+			SPR420.Action = SS_ACTION_SELECT_BLOCK
+			SPR420.Action = SS_ACTION_ACTIVE_CELL
+
+
+			If aRow > nRow Then
+				SPR420.Col = 1
+				SPR420.Row = aRow
+				SPR420.Col2 = 1
+				SPR420.Row2 = aRow
+				SPR420.Action = SS_ACTION_SELECT_BLOCK
+				SPR420.Action = SS_ACTION_ACTIVE_CELL
+			End If
+
+			ByMyself = False
+		End If
+
+		'    Dim nRow As Long
+		'    Dim iRow As Long
+		'
+		'    If ByMyself Then Exit Sub
+		'
+		'    nRow = SPR420.DataRowCnt + 1
+		''    nRow = nRow - 2
+		'    nRow = IIf(nRow < 0, 0, nRow)
+		'
+		'    iRow = SPR420.TopRow
+		'
+		'    If iRow > (nRow - 2) Then
+		'        ByMyself = True
+		'
+		'        SPR420.Col = 1
+		'        SPR420.ROW = nRow
+		'        SPR420.Col2 = 1
+		'        SPR420.Row2 = nRow
+		'        SPR420.Action = SS_ACTION_SELECT_BLOCK
+		'        SPR420.Action = SS_ACTION_ACTIVE_CELL
+		'        ByMyself = False
+		'    End If
+		'
+
+	End Sub
+
 	Private Function CHK_DUPFIND(ByRef strFind As String, ByRef lRow As Integer) As Short
 		
 		Dim lEnd As Integer
@@ -8095,14 +8222,15 @@ OPTO999_SELF:
 				End If
 			End If
 		Next i
-		'消費税区分チェック
-		'D-20250201↓
-		'strCode1 = Trim(KB.Tax_kubn)
-		'If strCode1 = "" And strCode1 >= "1" And strCode1 <= "5" Then
-		'D-20250201↑
-		'A-20250201↓
-		strCode1 = Trim(KB.tax_rate_kbn)
-		If strCode1 = "3" And OPTO310(3).Value = False Then
+        '消費税区分チェック
+        'D-20250201↓
+        'strCode1 = Trim(KB.Tax_kubn)
+        'If strCode1 = "" And strCode1 >= "1" And strCode1 <= "5" Then
+        'D-20250201↑
+        'A-20250201↓
+        strCode1 = Trim(KB.tax_rate_kbn)
+		'If strCode1 = "3" And OPTO310(3).Value = False Then 'D-20250201
+		If strCode1 = "3" And OPTO310(3).Checked = False Then 'A-20250417
 			'A-20250201↑
 			ZAER_NO.Value = "" 'A-CUST-20100610
 			ZAER_CD = 120
@@ -8112,7 +8240,7 @@ OPTO999_SELF:
 			Call FOCUS_SET()
 			Exit Function
 		End If
-		
+
 		If CHK500.CheckState = 1 And Trim(IMTX510.Text) = "" Then
 			ZAER_CD = 120
 			ZAER_NO.Value = "" 'A-CUST-20100610
@@ -8297,7 +8425,8 @@ OPTO999_SELF:
 		IMTX040.Text = RTrim(KB.hin_name)
 		IMTX050.Text = RTrim(KB.kikaku)
 		'UPGRADE_ISSUE: ComboBox プロパティ CMB060.DataField はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"' をクリックしてください。
-		CMB060.DataField = KB.tani
+		'CMB060.DataField = KB.tani 'D-20250417
+		CMB060.DataSource = KB.tani 'A-20250417
 		Call COMBO_SETLIST(CMB060, KB.tani)
 		IMTX065.Text = RTrim(KB.hin_name_seisiki)
 		IMNU120(1).Value = KB.kei_kin1

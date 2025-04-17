@@ -6,7 +6,7 @@ Module ARQCNBAS
 	' <Create>
 	'  Date 97.07.29
 	'  K.Tsubata
-	
+
 	' <MODIFY>
 	'  DATE 99.11.24  MKK 仕入在庫管理システム用
 	'  K.YOSHINO
@@ -15,13 +15,15 @@ Module ARQCNBAS
 	'  K.YOSHINO
 	'-------------------------------------------
 	'UPGRADE_ISSUE: パラメータ 'As Any' の宣言はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"' をクリックしてください。
-	Declare Function GetPrivateProfileString Lib "kernel32"  Alias "GetPrivateProfileStringA"(ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Integer, ByVal lpFileName As String) As Integer
+	'Declare Function GetPrivateProfileString Lib "kernel32"  Alias "GetPrivateProfileStringA"(ByVal lpApplicationName As String, ByVal lpKeyName As Any, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Integer, ByVal lpFileName As String) As Integer 'D-20250417
+	Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As Integer, ByVal lpFileName As String) As Integer 'A-20250417
 	Declare Function GetPrivateProfileInt Lib "kernel32"  Alias "GetPrivateProfileIntA"(ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal nDefault As Integer, ByVal lpFileName As String) As Integer
-	
-	
+
+
 	'ODBC API用関数宣言
 	'UPGRADE_ISSUE: パラメータ 'As Any' の宣言はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"' をクリックしてください。
-	Declare Function SQLGetInfo Lib "ODBC32.DLL" (ByVal hdbc As Integer, ByVal fInfoType As Short, ByRef rgbInfoValue As Any, ByVal cbInfoMax As Short, ByRef cbInfoOut As Short) As Short
+	'Declare Function SQLGetInfo Lib "ODBC32.DLL" (ByVal hdbc As Integer, ByVal fInfoType As Short, ByRef rgbInfoValue As Any, ByVal cbInfoMax As Short, ByRef cbInfoOut As Short) As Short 'D-20250417
+	Declare Function SQLGetInfo Lib "ODBC32.DLL" (ByVal hdbc As Integer, ByVal fInfoType As Short, ByRef rgbInfoValue As String, ByVal cbInfoMax As Short, ByRef cbInfoOut As Short) As Short 'A-20250417
 	Declare Function SQLGetInfoString Lib "ODBC32.DLL"  Alias "SQLGetInfo"(ByVal hdbc As Integer, ByVal fInfoType As Short, ByVal rgbInfoValue As String, ByVal cbInfoMax As Short, ByRef cbInfoOut As Short) As Short
 	Private Declare Function SQLDataSources Lib "ODBC32.DLL" (ByVal henv As Integer, ByVal fDirection As Short, ByVal szDSN As String, ByVal cbDSNMax As Short, ByRef pcbDSN As Short, ByVal szDescription As String, ByVal cbDescriptionMax As Short, ByRef pcbDescription As Short) As Short
 	Private Declare Function SQLAllocEnv Lib "ODBC32.DLL" (ByRef env As Integer) As Short
@@ -40,7 +42,8 @@ Module ARQCNBAS
 	Declare Function RegOpenKeyEx Lib "advapi32.dll"  Alias "RegOpenKeyExA"(ByVal hKey As Integer, ByVal lpSubKey As String, ByVal ulOptions As Integer, ByVal samDesired As Integer, ByRef phkResult As Integer) As Integer
 	Declare Function RegCloseKey Lib "advapi32.dll" (ByVal hKey As Integer) As Integer
 	'UPGRADE_ISSUE: パラメータ 'As Any' の宣言はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="FAE78A8D-8978-4FD4-8208-5B7324A8F795"' をクリックしてください。
-	Declare Function RegQueryValueEx Lib "advapi32.dll"  Alias "RegQueryValueExA"(ByVal hKey As Integer, ByVal lpValueName As String, ByVal lpReserved As Integer, ByRef lpType As Integer, ByRef lpData As Any, ByRef lpcbData As Integer) As Integer
+	'Declare Function RegQueryValueEx Lib "advapi32.dll"  Alias "RegQueryValueExA"(ByVal hKey As Integer, ByVal lpValueName As String, ByVal lpReserved As Integer, ByRef lpType As Integer, ByRef lpData As Any, ByRef lpcbData As Integer) As Integer 'D-20250417
+	Declare Function RegQueryValueEx Lib "advapi32.dll" Alias "RegQueryValueExA" (ByVal hKey As Integer, ByVal lpValueName As String, ByVal lpReserved As Integer, ByRef lpType As Integer, ByRef lpData As String, ByRef lpcbData As Integer) As Integer 'A-20250417
 	'レジストリ取得用API定数宣言
 	Public Const HKEY_LOCAL_MACHINE As Integer = &H80000002
 	Public Const HKEY_CURRENT_USER As Integer = &H80000001
@@ -146,9 +149,10 @@ Module ARQCNBAS
 		RdoEnv = RDOrdoEngine_definst.rdoEnvironments(0)
 		
 		On Error Resume Next
-		
+
 		'UPGRADE_ISSUE: 定数 vbSModeStandalone はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 		'UPGRADE_ISSUE: App プロパティ App.StartMode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="076C26E5-B7A9-4E77-B69C-B4448DF39E58"' をクリックしてください。
+
 		If App.StartMode = vbSModeStandalone Then
 			'独立型で起動されている時のみＤＳＮ接続用の引数があるかチェック(EXEの引数から接続文字列を取得してみる)
 			StrPos = InStr(VB.Command(), ":")
@@ -158,11 +162,10 @@ Module ARQCNBAS
 				ZACN_RCN = RdoEnv.OpenConnection("", RDO.PromptConstants.rdDriverNoPrompt, False, Mid(VB.Command(), StrPos + 1))
 				If Err.Number = 0 Then
 					'データベースタイプをセット(実際にコネクトした情報から取得)
-					Ret = SQLGetInfoString(ZACN_RCN.hdbc, SQL_DBMS_NAME, DRVNAME.Value, 128, DRVSTRNUM)
+					Ret = SQLGetInfoString(ZACN_RCN.hDbc, SQL_DBMS_NAME, DRVNAME.Value, 128, DRVSTRNUM)
 					If Ret <> SQL_SUCCESS Then
 						'ドライバ名取得失敗
 						ZACN_SUB = False
-						'UPGRADE_NOTE: オブジェクト ZACN_RCN をガベージ コレクトするまでこのオブジェクトを破棄することはできません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="6E35BFF6-CD74-4B09-9689-3E1A43DF8969"' をクリックしてください。
 						ZACN_RCN = Nothing
 						Exit Function
 					End If
@@ -179,12 +182,12 @@ Module ARQCNBAS
 				End If
 			End If
 		End If
-		
+
 		' iniからDSN接続文字列を取得
 		'99/11/24 MOD START FOR MKK
 		'    Ret = GetPrivateProfileString("CONNECT", "DBNAME", "", GETSTRWORK, Len(GETSTRWORK), ININAMESTR)
 		'    ZACN_DBNAME = StrConv(LeftB(StrConv(GETSTRWORK, vbFromUnicode), Ret), vbUnicode)
-		
+
 		ZACN_DBNAME = DSN
 		'99/11/24 MOD END FOR MKK
 		

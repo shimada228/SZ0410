@@ -388,37 +388,37 @@ PREP_JAN_BUNRUI_ERR:
 		SQLWHERE = ""
 		If RTrim(SZ0414_IMTX010.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K4 >= ? "
 		End If
 		If RTrim(SZ0414_IMTX020.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K4 <= ? "
 		End If
 		If RTrim(SZ0414_IMTX030.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K21 >= ? "
 		End If
 		If RTrim(SZ0414_IMTX040.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K21 <= ? "
 		End If
 		If RTrim(SZ0414_IMTX050.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K44 = ? "
 		End If
 		If (SZ0414_IMNU060) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K42 >= ? "
 		End If
 		If (SZ0414_IMNU070) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K42 <= ? "
 		End If
 		'    If RTrim$(SZ0414_IMTX080) <> "0" Then
@@ -435,12 +435,12 @@ PREP_JAN_BUNRUI_ERR:
 		'    End If
 		If (SZ0414_IMNU090) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K99 >= ? "
 		End If
 		If (SZ0414_IMNU100) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K99 <= ? "
 		End If
 		SQL = SQL & SQLWHERE
@@ -542,37 +542,37 @@ PREP_JAN_BUNRUI_ERR:
 		SQLWHERE = SQLWHERE & " WHERE JAN.K4  > ?" '
 		If RTrim(SZ0414_IMTX010.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K4 >= ? "
 		End If
 		If RTrim(SZ0414_IMTX020.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K4 <= ? "
 		End If
 		If RTrim(SZ0414_IMTX030.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K21 >= ? "
 		End If
 		If RTrim(SZ0414_IMTX040.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K21 <= ? "
 		End If
 		If RTrim(SZ0414_IMTX050.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K44 = ? "
 		End If
 		If (SZ0414_IMNU060) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K42 >= ? "
 		End If
 		If (SZ0414_IMNU070) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K42 <= ? "
 		End If
 		'    If RTrim$(SZ0414_IMTX080) <> "0" Then
@@ -589,12 +589,12 @@ PREP_JAN_BUNRUI_ERR:
 		'    End If
 		If (SZ0414_IMNU090) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K99 >= ? "
 		End If
 		If (SZ0414_IMNU100) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K99 <= ? "
 		End If
 		SQL = SQL & SQLWHERE
@@ -698,37 +698,38 @@ PREP_JAN_BUNRUI_ERR:
 		SQLWHERE = SQLWHERE & " WHERE JAN.K4  < ?" '
 		If RTrim(SZ0414_IMTX010.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			'GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K4 >= ? "
 		End If
 		If RTrim(SZ0414_IMTX020.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K4 <= ? "
 		End If
 		If RTrim(SZ0414_IMTX030.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K21 >= ? "
 		End If
 		If RTrim(SZ0414_IMTX040.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K21 <= ? "
 		End If
 		If RTrim(SZ0414_IMTX050.Value) <> "" Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K44 = ? "
 		End If
 		If (SZ0414_IMNU060) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K42 >= ? "
 		End If
 		If (SZ0414_IMNU070) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K42 <= ? "
 		End If
 		'    If RTrim$(SZ0414_IMTX080) <> "0" Then
@@ -745,12 +746,12 @@ PREP_JAN_BUNRUI_ERR:
 		'    End If
 		If (SZ0414_IMNU090) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K99 >= ? "
 		End If
 		If (SZ0414_IMNU100) <> 0 Then
 			'UPGRADE_ISSUE: GoSub ステートメントはサポートされていません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="C5A1A479-AB8B-4D40-AAF4-DB19A2E5E77F"' をクリックしてください。
-			GoSub WHERE_SET
+			GoTo WHERE_SET
 			SQLWHERE = SQLWHERE & " JAN.K99 <= ? "
 		End If
 		SQL = SQL & SQLWHERE
