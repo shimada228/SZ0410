@@ -1,0 +1,364 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24E1A6A8-510D-4EC1-81C1-13E8A06979AF}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>SZ0410PRJ</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SZ0410PRJ.SZ0410BAS</StartupObject>
+    <AssemblyMajorVersion>1</AssemblyMajorVersion>
+    <AssemblyMinorVersion>0</AssemblyMinorVersion>
+    <AssemblyRevisionNumber>0</AssemblyRevisionNumber>
+    <GenerateRevisionNumber>False</GenerateRevisionNumber>
+    <AssemblyCompanyName>09001</AssemblyCompanyName>
+    <StartWithIE>False</StartWithIE>
+    <ApplicationIcon>SZ0410.ico</ApplicationIcon>
+    <RootNamespace>SZ0410PRJ</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>SZ0410PRJ.xml</DocumentationFile>
+    <DebugSymbols>True</DebugSymbols>
+    <DefineDebug>True</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>full</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>.\bin\</OutputPath>
+    <DocumentationFile>SZ0410PRJ.xml</DocumentationFile>
+    <DebugSymbols>False</DebugSymbols>
+    <DefineDebug>False</DefineDebug>
+    <DefineTrace>True</DefineTrace>
+    <DefineConstants>Win32=True</DefineConstants>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>none</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common">
+      <HintPath>..\..\PRG\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Control">
+      <HintPath>..\..\PRG\Control.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.Win, Version=11.0.4503.2012, Culture=neutral, PublicKeyToken=a5fa960294d899e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\FarPoint.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="FarPoint.Win.SpreadJ, Version=11.0.4503.2012, Culture=neutral, PublicKeyToken=a5fa960294d899e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\FarPoint.Win.SpreadJ.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Framework.InputMan.v24, Version=2.4.4003.2012, Culture=neutral, PublicKeyToken=fdd90f5c44b73170, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\GrapeCity.Framework.InputMan.v24.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Win.Editors.Design.v100, Version=10.0.4003.2012, Culture=neutral, PublicKeyToken=0ce01a33ce55ca12, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\GrapeCity.Win.Editors.Design.v100.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Win.Editors.v100, Version=10.0.4003.2012, Culture=neutral, PublicKeyToken=0ce01a33ce55ca12, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\GrapeCity.Win.Editors.v100.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Win.Input.Interop.v100, Version=10.0.4003.2012, Culture=neutral, PublicKeyToken=40ae1c5c604f43d6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\GrapeCity.Win.Input.Interop.v100.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Win.PluginInputMan, Version=11.0.4503.2012, Culture=neutral, PublicKeyToken=a5fa960294d899e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\GrapeCity.Win.PluginInputMan.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Win.PlusPak.v100, Version=10.0.4003.2012, Culture=neutral, PublicKeyToken=63a9ba12b6923243, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PRG\GrapeCity.Win.PlusPak.v100.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility">
+      <Name>Microsoft.VisualBasic.Compatibility</Name>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Compatibility.Data">
+      <Name>Microsoft.VisualBasic.Compatibility.Data</Name>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.XML">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="RDO">
+      <Guid>{EE008642-64A8-11CE-920F-08002B369A33}</Guid>
+      <Lcid>0</Lcid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Common" />
+    <Import Include="Control" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualBasic.Compatibility" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arpz99.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqce.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqcna.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqcnap.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqcn_bas.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqcn_frm.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>Arqcn_frm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Arqcn_frm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Arqdc.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqen.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqer.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqfc.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqgd.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqkb.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqlg.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqlgm.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqop.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqsys.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Arqwc.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.vb" />
+    <Compile Include="Com0010.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com0020.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com0050.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Com0070.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Iniget.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JAN.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JAN_BUNRUI.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JAN_HENKAN.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mcm92.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mcm93.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mcm94.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mcm95.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mcm97.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Mcm98.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Smilev5.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Ssocx.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Storedv5.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SZ0410C.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SZ0410H.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SZ0410U.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SZ0410_bas.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SZ0410_frm.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>SZ0410_frm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SZ0410_frm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SZ0411.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>SZ0411.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SZ0411.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SZ0412.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>SZ0412.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SZ0412.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SZ0414_bas.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SZ0414_frm.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>SZ0414_frm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SZ0414_frm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SZ0415_bas.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SZ0415_frm.Designer.vb">
+      <SubType>Code</SubType>
+      <DependentUpon>SZ0415_frm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SZ0415_frm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Szm0010.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0011.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0040.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0050.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0055.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0060.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0070.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0080.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0110.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Szm0170.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UpgradeSupport.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WSZ0410.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Arqcn_frm.resX">
+      <DependentUpon>Arqcn_frm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="SZ0410_frm.resX">
+      <DependentUpon>SZ0410_frm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SZ0411.resX">
+      <DependentUpon>SZ0411.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SZ0412.resX">
+      <DependentUpon>SZ0412.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SZ0414_frm.resX">
+      <DependentUpon>SZ0414_frm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SZ0415_frm.resX">
+      <DependentUpon>SZ0415_frm.vb</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="SZ0410.ico" />
+    <None Include="app.config" />
+    <None Include="AxImNumberArray.dll" />
+    <None Include="AxImTextArray.dll" />
+    <None Include="AxOSKButtonArray.dll" />
+    <None Include="AxOSKOptBtnArray.dll" />
+    <None Include="_UpgradeReport.htm">
+      <SubType>Preview</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
