@@ -1052,9 +1052,10 @@ Friend Class SZ0410FRM
 					CMDOFNC(7).Focus()
 				End If
 				Call CMDOFNC_ClickEvent(CMDOFNC.Item(7), New System.EventArgs())
+                KeyCode = n0
 				KeyCode = n0
 				'A-CUST-20100610 End
-				
+
 			Case System.Windows.Forms.Keys.F8
 				If CMDOFNC(8).Enabled Then
 					Call CMDOFNC_ClickEvent(CMDOFNC.Item(8), New System.EventArgs())
