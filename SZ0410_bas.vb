@@ -2420,7 +2420,8 @@ PREP_SZM0010_ERR:
 			.IMTX040.Text = RTrim(KB.hin_name) '   品名
 			.IMTX050.Text = RTrim(KB.kikaku)
 			'UPGRADE_ISSUE: ComboBox プロパティ CMB060.DataField はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="CC4C7EC0-C903-48FC-ACCC-81861D12DA4A"' をクリックしてください。
-			.CMB060.DataField = KB.tani
+			'.CMB060.DataField = KB.tani 'D-20250417
+			.CMB060.DataSource = KB.tani 'A-20250417
 			Call COMBO_SETLIST(.CMB060, KB.tani)
 			.IMTX065.Text = RTrim(KB.hin_name_seisiki) 'A-CUST-20100610
 			.IMTX070.Text = RTrim(KB.jan_code)
@@ -2541,34 +2542,34 @@ PREP_SZM0010_ERR:
 			.CHK270.CheckState = IIf(KB.jutaku = "1", 1, 0)
 			.CHK280.CheckState = IIf(KB.sikakari = "1", 1, 0)
 			.CHK290.CheckState = IIf(KB.zan = "1", 1, 0)
-			
+
 			''''.OPTO300(1).Value = (KB.kanri_kubn = "1")   '   管理区分－数量
-			.OPTO300(1).Value = (KB.kanri_kubn <> "2") '   管理区分－数量フォロー
-			.OPTO300(2).Value = (KB.kanri_kubn = "2") '   管理区分－金額
-			WKB300 = IIf(.OPTO300(1).Value, 1, 2)
-			
-			.OPTO310(1).Value = (KB.Tax_kubn = "1") '   消費税区分－外税
-			.OPTO310(2).Value = (KB.Tax_kubn = "2") '   消費税区分－税込
-			.OPTO310(3).Value = (KB.Tax_kubn = "3") '   消費税区分－非課税
-			.OPTO310(1).Value = (Not .OPTO310(2).Value) And (Not .OPTO310(3).Value)
+			.OPTO300(1).Checked = (KB.kanri_kubn <> "2") '   管理区分－数量フォロー
+			.OPTO300(2).Checked = (KB.kanri_kubn = "2") '   管理区分－金額
+			WKB300 = IIf(.OPTO300(1).Checked, 1, 2)
+
+			.OPTO310(1).Checked = (KB.Tax_kubn = "1") '   消費税区分－外税
+			.OPTO310(2).Checked = (KB.Tax_kubn = "2") '   消費税区分－税込
+			.OPTO310(3).Checked = (KB.Tax_kubn = "3") '   消費税区分－非課税
+			.OPTO310(1).Checked = (Not .OPTO310(2).Checked) And (Not .OPTO310(3).Checked)
 			'   消費税区分－外税フォロー
-			WKB310 = IIf(.OPTO310(1).Value, 1, IIf(.OPTO310(2).Value, 2, 3))
-			
+			WKB310 = IIf(.OPTO310(1).Checked, 1, IIf(.OPTO310(2).Checked, 2, 3))
+
 			''''.OPTO320(1).Value = (KB.tana_tanka = "1")   '   棚卸単価－仕入単価
-			.OPTO320(1).Value = (KB.tana_tanka <> "2") '   棚卸単価－仕入単価
-			.OPTO320(2).Value = (KB.tana_tanka = "2") '   棚卸単価－入力単価
-			WKB320 = IIf(.OPTO320(1).Value, 1, 2)
-			
+			.OPTO320(1).Checked = (KB.tana_tanka <> "2") '   棚卸単価－仕入単価
+			.OPTO320(2).Checked = (KB.tana_tanka = "2") '   棚卸単価－入力単価
+			WKB320 = IIf(.OPTO320(1).Checked, 1, 2)
+
 			''''.OPTO330(1).Value = (KB.tana_tanka = "1")   '   在庫管理－する
-			.OPTO330(1).Value = (KB.zaiko <> "2") '   在庫管理－する
-			.OPTO330(2).Value = (KB.zaiko = "2") '   在庫管理－しない
-			WKB330 = IIf(.OPTO330(1).Value, 1, 2)
-			
+			.OPTO330(1).Checked = (KB.zaiko <> "2") '   在庫管理－する
+			.OPTO330(2).Checked = (KB.zaiko = "2") '   在庫管理－しない
+			WKB330 = IIf(.OPTO330(1).Checked, 1, 2)
+
 			''''.OPTO340(1).Value = (KB.tana_tanka = "0")   '   FAX送信－する
-			.OPTO340(1).Value = (KB.Fax_yn <> "1") '   FAX送信－する
-			.OPTO340(2).Value = (KB.Fax_yn = "1") '   FAX送信－しない
-			WKB340 = IIf(.OPTO340(1).Value, 1, 2)
-			
+			.OPTO340(1).Checked = (KB.Fax_yn <> "1") '   FAX送信－する
+			.OPTO340(2).Checked = (KB.Fax_yn = "1") '   FAX送信－しない
+			WKB340 = IIf(.OPTO340(1).Checked, 1, 2)
+
 			'    .CMB060.DataField = KB.tani
 			Call COMBO_SETLIST(.CMB350(1), KB.ha_tanka1)
 			Call COMBO_SETLIST(.CMB350(2), KB.ha_tanka2)
@@ -3456,56 +3457,56 @@ TORIKOMI_END01:
 			End If
 		Next i
 		'A-CUST-20100823 End
-		
+
 		If IN_ITEM_CNT <> IN_ITEM_MAX Then
 			strMsg = "レイアウトが違います。"
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(1), vbFromUnicode)) > 40 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(1), vbFromUnicode)) > 40 Then
 			strMsg = "正式品名の文字数が多過ぎます。"
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(2), vbFromUnicode)) > 20 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(2), vbFromUnicode)) > 20 Then
 			strMsg = "規格の文字数が多過ぎます。"
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(3), vbFromUnicode)) > 4 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(3), vbFromUnicode)) > 4 Then
 			strMsg = "単位の文字数が多過ぎます。"
 			'A-CUST-20100823 Start
-		ElseIf Not CHK_tani(IN_ITEM(3)) Then 
+		ElseIf Not CHK_tani(IN_ITEM(3)) Then
 			strMsg = "単位が登録されていません。"
 			'A-CUST-20100823 End
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(4), vbFromUnicode)) > 30 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(4), vbFromUnicode)) > 30 Then
 			strMsg = "事業者の文字数が多過ぎます。"
-		ElseIf Not IsNumeric(IN_ITEM(5)) Then 
+		ElseIf Not IsNumeric(IN_ITEM(5)) Then
 			strMsg = "単価が数値ではありません。"
-		ElseIf Val(IN_ITEM(5)) > 99999999.99 Or Val(IN_ITEM(5)) < 0 Then 
+		ElseIf Val(IN_ITEM(5)) > 99999999.99 Or Val(IN_ITEM(5)) < 0 Then
 			strMsg = "単価の値が間違っています。"
 			'ElseIf Val(Format$(Val(IN_ITEM(5)), "0.00")) <> Val(IN_ITEM(5)) < 0 Then      '少数桁チェック  D-CUST-20100823
 		ElseIf Val(VB6.Format(Val(IN_ITEM(5)), "0.00")) <> Val(IN_ITEM(5)) Then  '少数桁チェック       A-CUST-20100823
 			strMsg = "単価の値が間違っています。"
 			'A-CUST-20100823 Start
-		ElseIf Not CHK_Tekiyobi(IN_ITEM(CsvPos.teki_date), strMsg) Then 
+		ElseIf Not CHK_Tekiyobi(IN_ITEM(CsvPos.teki_date), strMsg) Then
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(CsvPos.ha_tani), vbFromUnicode)) > 4 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(CsvPos.ha_tani), vbFromUnicode)) > 4 Then
 			strMsg = "発注単位の文字数が多過ぎます。"
-		ElseIf Not CHK_tani(IN_ITEM(CsvPos.ha_tani)) Then 
+		ElseIf Not CHK_tani(IN_ITEM(CsvPos.ha_tani)) Then
 			strMsg = "発注単位が登録されていません。"
-		ElseIf Not CHK_Kansansu(IN_ITEM(CsvPos.ha_tani), IN_ITEM(CsvPos.kansansu), strMsg) Then 
+		ElseIf Not CHK_Kansansu(IN_ITEM(CsvPos.ha_tani), IN_ITEM(CsvPos.kansansu), strMsg) Then
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(CsvPos.jan_code), vbFromUnicode)) > 13 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(CsvPos.jan_code), vbFromUnicode)) > 13 Then
 			strMsg = "JAN標準コードの文字数が多過ぎます。"
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(CsvPos.jan_s_code), vbFromUnicode)) > 7 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(CsvPos.jan_s_code), vbFromUnicode)) > 7 Then
 			strMsg = "JAN短縮コードの文字数が多過ぎます。"
 			'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 			'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		ElseIf LenB(StrConv(IN_ITEM(CsvPos.bar_code), vbFromUnicode)) > 30 Then 
+		ElseIf LenB(Microsoft.VisualBasic.StrConv(IN_ITEM(CsvPos.bar_code), vbFromUnicode)) > 30 Then
 			strMsg = "その他バーコードの文字数が多過ぎます。"
 			'A-CUST-20100823 End
 		Else
@@ -3551,12 +3552,12 @@ TORIKOMI_END01:
 		End If
 		'UPGRADE_ISSUE: 定数 vbFromUnicode はアップグレードされませんでした。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="55B59875-9A95-4B71-9D6A-7C294BF7139D"' をクリックしてください。
 		'UPGRADE_ISSUE: LenB 関数はサポートされません。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="367764E5-F3F8-4E43-AC3E-7FE0B5E074E2"' をクリックしてください。
-		If LenB(StrConv(sTekiyobi, vbFromUnicode)) > 8 Then
+		If LenB(Microsoft.VisualBasic.StrConv(sTekiyobi, vbFromUnicode)) > 8 Then
 			strMsg = "適用日の文字数が多過ぎます。"
 			CHK_Tekiyobi = False
 			Exit Function
 		End If
-		
+
 		ZADC_DATE.Value = sTekiyobi
 		Call ZADC_SUB()
 		If ZADC_STS.Value = "0" Then
