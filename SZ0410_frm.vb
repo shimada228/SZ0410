@@ -498,23 +498,23 @@ Friend Class SZ0410FRM
 		LST_NO = CUR_NO
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
+
 	End Sub
-	
+
 	Private Sub CHK500_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles CHK500.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
-		
+
 		Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(KeyCode Or Shift * &H10000))
-		
+
 	End Sub
-	
+
 	Private Sub CMB060_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMB060.Enter
-		
+
 		If CUR_NO = N060 Then Exit Sub
-		
+
 		CUR_NO = N060
-		
+
 		'チェック
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
@@ -534,13 +534,13 @@ Friend Class SZ0410FRM
 		LST_NO = CUR_NO
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
+
 	End Sub
-	
+
 	Private Sub CMB060_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles CMB060.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
-		
+
 		Select Case KeyCode
 			Case System.Windows.Forms.Keys.Down
 			Case System.Windows.Forms.Keys.Up
@@ -553,7 +553,7 @@ Friend Class SZ0410FRM
 			Case Else
 				Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(KeyCode Or Shift * &H10000))
 		End Select
-		
+
 	End Sub
 	'A-20240115↓
 	'UPGRADE_WARNING: イベント CMB165.SelectedIndexChanged は、フォームが初期化されたときに発生します。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="88B12AE1-6DE0-48A0-86F1-60C0686C026A"' をクリックしてください。
@@ -563,7 +563,7 @@ Friend Class SZ0410FRM
 			CMB170.BackColor = System.Drawing.ColorTranslator.FromOle(&HFFFF80)
 			CMB170.SelectedIndex = -1
 			KB.k57 = ""
-			
+
 			IMNU170(1).Enabled = False
 			IMNU170(1).BackColor = System.Drawing.ColorTranslator.FromOle(&HFFFF80)
 			IMNU170(1).Value = 0
@@ -573,19 +573,19 @@ Friend Class SZ0410FRM
 		Else
 			CMB170.Enabled = True
 			CMB170.BackColor = System.Drawing.ColorTranslator.FromOle(&HFFFFFF)
-			
+
 			IMNU170(1).Enabled = True
 			IMNU170(1).BackColor = System.Drawing.ColorTranslator.FromOle(&HFFFFFF)
 		End If
 	End Sub
-	
-	
+
+
 	Private Sub CMB165_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMB165.Enter
-		
+
 		If CUR_NO = N165 Then Exit Sub
-		
+
 		CUR_NO = N165
-		
+
 		'チェック
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
@@ -603,12 +603,12 @@ Friend Class SZ0410FRM
 		End If
 		'確定
 		LST_NO = CUR_NO
-		
+
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
+
 	End Sub
-	
+
 	Private Sub CMB165_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles CMB165.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
@@ -628,11 +628,11 @@ Friend Class SZ0410FRM
 	'A-20240115↑
 	'A-CUST20130212↓
 	Private Sub CMB170_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMB170.Enter
-		
+
 		If CUR_NO = N170CMB Then Exit Sub
-		
+
 		CUR_NO = N170CMB
-		
+
 		'チェック
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
@@ -652,14 +652,14 @@ Friend Class SZ0410FRM
 		LST_NO = CUR_NO
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
+
 	End Sub
 	'A-CUST20130212↑
 	'A-CUST20130212↓
 	Private Sub CMB170_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles CMB170.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
-		
+
 		Select Case KeyCode
 			Case System.Windows.Forms.Keys.Down
 			Case System.Windows.Forms.Keys.Up
@@ -672,12 +672,12 @@ Friend Class SZ0410FRM
 			Case Else
 				Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(KeyCode Or Shift * &H10000))
 		End Select
-		
+
 	End Sub
 	'A-CUST20130212↑
 	Private Sub CMB350_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMB350.Enter
 		Dim Index As Short = CMB350.GetIndex(eventSender)
-		
+
 		Select Case Index
 			Case 1
 				CTRLTBL(N350_1).CTRL.TabStop = True
@@ -700,7 +700,7 @@ Friend Class SZ0410FRM
 				If CUR_NO = N350_5 Then Exit Sub
 				CUR_NO = N350_5
 		End Select
-		
+
 		'チェック
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
@@ -716,19 +716,19 @@ Friend Class SZ0410FRM
 		If MVALCHK() = False Then
 			Exit Sub
 		End If
-		
+
 		'確定
 		LST_NO = CUR_NO
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
+
 	End Sub
-	
+
 	Private Sub CMB350_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles CMB350.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
 		Dim Index As Short = CMB350.GetIndex(eventSender)
-		
+
 		Select Case KeyCode
 			Case System.Windows.Forms.Keys.Down
 			Case System.Windows.Forms.Keys.Up
@@ -749,33 +749,33 @@ Friend Class SZ0410FRM
 			Case Else
 				Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(KeyCode Or Shift * &H10000))
 		End Select
-		
-		
+
+
 	End Sub
-	
+
 	'A-20250201↓
 	'UPGRADE_WARNING: イベント CMB370.SelectedIndexChanged は、フォームが初期化されたときに発生します。 詳細については、'ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?keyword="88B12AE1-6DE0-48A0-86F1-60C0686C026A"' をクリックしてください。
 	Private Sub CMB370_SelectedIndexChanged(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMB370.SelectedIndexChanged
-		
+
 		If clearActCMB370Click = True Then Exit Sub
-		
+
 		CUR_NO = N370
-		
+
 		Call IPROCHK_N370()
-		
+
 		'確定
 		LST_NO = CUR_NO
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
+
 	End Sub
-	
+
 	Private Sub CMB370_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMB370.Enter
-		
+
 		If CUR_NO = N370 Then Exit Sub
-		
+
 		CUR_NO = N370
-		
+
 		'チェック
 		If LST_NO <> n0 Then
 			If IPROCHK() = False Then
@@ -791,19 +791,19 @@ Friend Class SZ0410FRM
 		If MVALCHK() = False Then
 			Exit Sub
 		End If
-		
+
 		'確定
 		LST_NO = CUR_NO
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
+
 	End Sub
-	
-	
+
+
 	Private Sub CMB370_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles CMB370.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
-		
+
 		Select Case KeyCode
 			Case System.Windows.Forms.Keys.Down
 			Case System.Windows.Forms.Keys.Up
@@ -816,7 +816,7 @@ Friend Class SZ0410FRM
 			Case Else
 				Call SZ0410FRM_KeyDown(Me, New System.Windows.Forms.KeyEventArgs(KeyCode Or Shift * &H10000))
 		End Select
-		
+
 	End Sub
 
 	'A-20250201↑
@@ -945,20 +945,20 @@ Friend Class SZ0410FRM
 
 	Private Sub CMDOFNC_Enter(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles CMDOFNC.Enter
 		Dim Index As Short = CMDOFNC.GetIndex(eventSender)
-		
+
 		If Index <> 12 Then Exit Sub
-		
+
 		If CUR_NO = NF12 Then Exit Sub
-		
+
 		If Index = 12 Then
 			CUR_NO = NF12
 			'    Else
 			'        NXT_NO = LST_NO
 			'        Call FOCUS_SET
 			'        Exit Sub
-			
+
 		End If
-		
+
 		CUR_NO = NF12
 		'チェック
 		If LST_NO <> n0 Then
@@ -975,15 +975,15 @@ Friend Class SZ0410FRM
 		If MVALCHK() = False Then
 			Exit Sub
 		End If
-		
+
 		ZAKB_SW = 0
-		
+
 		'確定
 		LST_NO = CUR_NO
 		'--- ファンクションメッセージ
 		Call FUNCSET_RTN()
-		
-		
+
+
 	End Sub
 
 	'Private Sub CMDOFNC_KeyDownEvent(ByVal eventSender As System.Object, ByVal eventArgs As AxOskcmdLibV5.__OSKButton_KeyDownEvent) Handles CMDOFNC.KeyDownEvent 'D-20250417
@@ -997,19 +997,19 @@ Friend Class SZ0410FRM
 	Private Sub SZ0410FRM_KeyDown(ByVal eventSender As System.Object, ByVal eventArgs As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
 		Dim KeyCode As Short = eventArgs.KeyCode
 		Dim Shift As Short = eventArgs.KeyData \ &H10000
-		
+
 		'   Shift,Ctrl,Graph(Alt)キー押下時、処理無効
 		If Shift <> 0 Then
 			Exit Sub
 		End If
-		
+
 		Select Case KeyCode
 			Case System.Windows.Forms.Keys.Escape '   終了
 				If CMDOFNC(0).Enabled Then
 					Call CMDOFNC_ClickEvent(CMDOFNC.Item(0), New System.EventArgs())
 				End If
-				
-				
+
+
 			Case System.Windows.Forms.Keys.Return
 				Call SET_NO(1) '   次項目
 			Case System.Windows.Forms.Keys.Up
@@ -1017,28 +1017,28 @@ Friend Class SZ0410FRM
 			Case System.Windows.Forms.Keys.Down
 				Call SET_NO(3) '   次グループ
 				KeyCode = 0
-				
-				
+
+
 			Case System.Windows.Forms.Keys.F2
 				CMDOFNC_ClickEvent(CMDOFNC.Item(2), New System.EventArgs())
-				
+
 			Case System.Windows.Forms.Keys.F3
 				If CMDOFNC(3).Text <> "" Then
 					CMDOFNC(3).Focus()
 					Call CMDOFNC_ClickEvent(CMDOFNC.Item(3), New System.EventArgs())
 				End If
 				KeyCode = n0
-				
+
 			Case System.Windows.Forms.Keys.F4
 				If CMDOFNC(4).Enabled Then
 					Call CMDOFNC_ClickEvent(CMDOFNC.Item(4), New System.EventArgs())
 				End If
-				
+
 			Case System.Windows.Forms.Keys.F5
 				If CMDOFNC(5).Enabled Then
 					Call CMDOFNC_ClickEvent(CMDOFNC.Item(5), New System.EventArgs())
 				End If
-				
+
 				'A-CUST-20100610 Start
 			Case System.Windows.Forms.Keys.F6 'F6
 				If CMDOFNC(6).Text <> "" Then
@@ -1046,13 +1046,13 @@ Friend Class SZ0410FRM
 				End If
 				Call CMDOFNC_ClickEvent(CMDOFNC.Item(6), New System.EventArgs())
 				KeyCode = n0
-				
+
 			Case System.Windows.Forms.Keys.F7 'F7
 				If CMDOFNC(7).Text <> "" Then
 					CMDOFNC(7).Focus()
 				End If
 				Call CMDOFNC_ClickEvent(CMDOFNC.Item(7), New System.EventArgs())
-                KeyCode = n0
+				KeyCode = n0
 				KeyCode = n0
 				'A-CUST-20100610 End
 
@@ -1060,57 +1060,57 @@ Friend Class SZ0410FRM
 				If CMDOFNC(8).Enabled Then
 					Call CMDOFNC_ClickEvent(CMDOFNC.Item(8), New System.EventArgs())
 				End If
-				
+
 			Case System.Windows.Forms.Keys.F9
-				
+
 			Case System.Windows.Forms.Keys.F12
 				If CMDOFNC(12).Enabled Then
 					Call CMDOFNC_ClickEvent(CMDOFNC.Item(12), New System.EventArgs())
 				End If
-				
+
 		End Select
-		
+
 	End Sub
-	
+
 	Private Sub SZ0410FRM_Load(ByVal eventSender As System.Object, ByVal eventArgs As System.EventArgs) Handles MyBase.Load
-		
+
 		'-- ウィンドウ位置サイズ変更　サブルーチン
 		'    Call ZAWC_SUB(Me, 1)
-		
+
 		Call TBL_SET()
-		
+
 		Call INIT_SPR()
-		
-		
+
+
 		KBKBN = F_ADD
-		
+
 		Call INIT_RTN()
 		If ENDSW = F_END Or ERRSW = F_ERR Then
 			Call ENDR_RTN()
 			Exit Sub
 		End If
-		
+
 		If W_KENGEN(1) < 2 Then
 			OPTO999(1).Enabled = False
 			OPTO999(3).Enabled = False
 			KBKBN = 2
 		End If
-		
+
 		'A-20240115↓
 		CMB165.Items.Clear() 'コンボボックス クリア
 		CMB165.Items.Add(New VB6.ListBoxItem("期限なし", 0)) '登録
 		CMB165.Items.Add(New VB6.ListBoxItem("消費期限", 1)) '登録
 		CMB165.Items.Add(New VB6.ListBoxItem("賞味期限", 2)) '登録
 		'A-20240115↑
-		
+
 		'A-20250201↓
 		CMB370.Items.Clear() 'コンボボックス クリア
 		CMB370.Items.Add(New VB6.ListBoxItem("", 0)) '登録
 		CMB370.Items.Add(New VB6.ListBoxItem("標準", 1)) '登録
 		CMB370.Items.Add(New VB6.ListBoxItem("軽減", 2)) '登録
-		
+
 		'表示位置調整
-		LBL260.Top = LBL250.Top
+		LBL260.Top = LBL250.Top 'a
 		IMTX260.Top = IMTX250.Top
 		DSP260.Top = IMTX260.Top
 		CHK500.Top = VB6.TwipsToPixelsY(VB6.PixelsToTwipsY(LBL490.Top) + 60)
@@ -1123,7 +1123,7 @@ Friend Class SZ0410FRM
 		CHK460.Top = CHK450.Top
 		CHK450.Top = LBL440.Top
 		'A-20250201↑
-		
+
 		'   画面クリア＆初期表示
 		Call SCRCLR_RTN() '   F5-CLEARと同じ処理
 		
